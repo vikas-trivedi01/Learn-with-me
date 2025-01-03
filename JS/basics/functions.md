@@ -1,4 +1,4 @@
-# 1. Functions
+# Functions
 
 ## Introduction
 
