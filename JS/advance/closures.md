@@ -3,9 +3,10 @@
 ## Introduction
 
 - Closures are collection of functions and variables which belongs to outer function's scope.
-- Closures use lexical environment function they are defined in.
+- Closures use lexical environment of function they are defined in.
 - Closures are created every time, when a function call.
 - Closures use lexical scoping , which describes parser to parse variables from a function and lexical means that the closures use use variables of the function they are defined in.
+- Closures provides encapsulation and state management.
 
 ## Core Concepts
 
@@ -86,13 +87,51 @@ secondCounter.decrement();
 console.log(
   `Second counter value after subtracting one : ${secondCounter.getValue()}`
 );
-c;
+
 
 //Outputs
 // First counter value after adding two : 2
 // First counter value after subtracting one : 1
 // Second counter value after adding one : 1
 // Second counter value after subtracting one : 0
+```
+
+</details>
+
+### Closure to Perform Memoization
+
+- Here we will use closure to perform memoization.
+<details><summary>Code Example Of Above Topic</summary>
+
+```Javascript
+function memoize(func) {
+    let cache = {};
+
+    return function (key) {
+        let startTime = performance.now();
+        if (key in cache) {
+            let endTime = performance.now();
+            return { val: cache[key], time: (endTime - startTime).toFixed(5) };
+        }
+
+        let result = func(key);
+        cache[key] = result;
+        let endTime = performance.now();
+        return { val: result, time: (endTime - startTime).toFixed(5) };
+    };
+}
+
+const double = memoize(num => num * 2);
+
+let { val: doubledValue1, time: time1 } = double(2);
+console.log(`Doubled Value ${doubledValue1} returned in ${time1} ms.`);
+
+let { val: doubledValue2, time: time2 } = double(2); // Cached result
+console.log(`Doubled Value ${doubledValue2} returned in ${time2} ms. {Cached result}`);
+
+let { val: doubledValue3, time: time3 } = double(3);
+console.log(`Doubled Value ${doubledValue3} returned in ${time3} ms.`);
+
 ```
 
 </details>
