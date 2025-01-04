@@ -13,9 +13,9 @@
 
 - Closures are used to access variables of outer function.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 function generateEncryption(encryptionString) {
   return function (userPassword) {
     return `${userPassword}-${encryptionString}`;
@@ -39,9 +39,9 @@ console.log(userEncryptedPass("firstUser"));
 
 - Closures can be used to generate new functions, dynamically.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 const newCounter = function () {
   let cnt = 0;
   function changeCnt(value) {
@@ -106,9 +106,9 @@ c;
 #### Block Scope Closures
 
 - We can create closures on variables which are in block of something.
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 let getX;
 
 {
@@ -135,10 +135,10 @@ console.log(`Value of X : ${getX()}`); // Outputs 5
 
 #### Without Exporting Variables
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 <details><summary>mainModule.js</summary>
 
-```js
+```Javascript
 let x = 1;
 
 export const getX = () => x;
@@ -152,7 +152,7 @@ export const setX = (val) => {
 
 <details><summary>main.js</summary>
 
-```js
+```Javascript
 import { getX, setX } from "./mainModule.js";
 
 console.log(`${getX()}`); // Outputs 1
@@ -173,10 +173,10 @@ console.log(`${getX()}`); // Outputs 2
 
 #### With Exporting Variables
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 <details><summary>mainModule.js</summary>
 
-```js
+```Javascript
 export let x = 1;
 
 export const setX = (val) => {
@@ -188,7 +188,7 @@ export const setX = (val) => {
 
 <details><summary>getter.js</summary>
 
-```js
+```Javascript
 
 import { x } from './mainModule.js';
 
@@ -201,7 +201,7 @@ export const getX = () => x;
 
 <details><summary>main.js</summary>
 
-```js
+```Javascript
 import { setX } from "./mainModule.js";
 import { getX } from "./getter.js";
 
@@ -241,3 +241,95 @@ console.log(`${getX()}`);
   </tr>
 
 </table>
+
+### Closures in Loop
+
+- We can create closures in loop also but there is concern , we should not use var in loops while creating closures because var will be hoisted and thus in loop if we create more than one closures they will share the same lexical environment and closures will not hold different values accordingly for different iterations.
+
+<details><summary>Code Example Of Above Topic</summary>
+
+```Javascript
+function showFieldSuggestion (fieldSuggestion) {
+  document.getElementById('field_suggestion').textContent = fieldSuggestion;
+}
+
+function setupFieldsSuggestion() {
+  const fields = [
+    {
+      id: "neural_networks", 
+      fieldSuggestion: "You should explore Artificial Intelligence and Machine Learning!"
+    },
+    {
+      id: "ethical_hacking", 
+      fieldSuggestion: "You should consider the Cybersecurity field!"
+    },
+    {
+      id: "responsive_design", 
+      fieldSuggestion: "You should pursue Web Development!"
+    }
+];
+
+  fields.forEach((field)=> {
+    document.getElementById(field.id).isChecked = function () {
+      showField (field.fieldSuggestion);
+    }
+  });
+
+}
+
+setupFieldsSuggestion();
+```
+
+</details>
+
+### Performance Insights
+
+- Although closures are very powerfull but if they are not used correctly , they can introduce performance issues and slower response of script.
+
+#### Injecting Unnecessary Functions Inside Functions For a Common Task
+
+- When creating new object/class using functions, injecting methods which will be common to all objects/classes would not be recommended.
+
+- Methods should normally be associated to the object's prototype rather than defined into the object constructor. The reason is that whenever the constructor is called, the methods would get reassigned.
+
+<details><summary>Code Example Of Above Topic</summary>
+
+```Javascript
+function itemObj (name,message) {
+  this.name = name.toString;
+  this.message = message.toString;
+
+  this.getName = function () {
+    return this.name;
+  };
+  this.getMessage = function () {
+    return this.message;
+  };
+}
+
+```
+
+</details>
+<br />
+
+- Instead we can inject these methods in object's prototype using closures, so that each can access these methods.
+
+<details><summary>Code Example Of Above Topic</summary>
+
+```Javascript
+function itemObj (name,message) {
+  this.name = name.toString;
+  this.message = message.toString;
+}
+
+itemObj.prototype.getName = function () {
+    return this.name;
+};
+itemObj.prototype.getMessage = function () {
+    return this.message;
+};
+
+```
+
+</details>
+

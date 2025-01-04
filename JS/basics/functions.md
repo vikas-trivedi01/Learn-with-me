@@ -13,9 +13,9 @@
 - A named function defined using **function** keyword.
 - It can be called before it's declaration using concept of <i>Hoisting</i>.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 function sayHello(name) {
   return `Hello ${name}!`;
 }
@@ -31,9 +31,9 @@ console.log(sayHello("Robert"));
 - A function defined by assigning it to a variable.
 - Also known as **Anonymous Functions**.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 const sayHello = function (name) {
   return `Hello ${name}!`;
 };
@@ -50,9 +50,9 @@ console.log(sayHello("Robert"));
 - Introduced in ES6, and are shorter way to write functions.
 - It doesn't bind it's own <i>this</i>.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 const sayHello = (name) => `Hello ${name}!`;
 console.log(sayHello("Robert"));
 
@@ -66,9 +66,9 @@ console.log(sayHello("Robert"));
 
 - Default Parameters are a way to handle default / base cases where caller of function if doesn't provide necessary values for parameters then these default ways are taken as reference.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 function sayHello(name = "Guest") {
   return `Hello ${name}!`;
 }
@@ -84,9 +84,9 @@ console.log(sayHello());
 
 - REST Parameters are typically used to group remaining parameters which are provided in function call but not accepted as individuals in function definition.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 function multiplyBy(multiplier, ...toMultiplyNums) {
   return toMultiplyNums.map((numToMultiply) => {
     return multiplier * numToMultiply;
@@ -106,9 +106,9 @@ console.log(multiplyBy(2, 2, 3, 4));
 - SPREAD Parameters are typically used to spread out parameters's values which are provided in function call.
 - Expands arrays,object's values/properties in parameters.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 let user = {
     id : "user123",
     pass : "user",
@@ -144,9 +144,9 @@ console.log(addUserAge(parseInt(20,10));
 - Functions which are invoked just after starting the program is know as an IIFE.
 - Used for isolation of scope.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 (function () {
   console.log("This runs immediately!");
 })();
@@ -163,9 +163,9 @@ console.log(addUserAge(parseInt(20,10));
 - It's Powerfull because it can provide abstraction, reusability, modularity.
 - It makes easy to handle operations like filtering, mapping, reducing, or dynamically generating new functions.
 
-<details><summary>Code Eaxmple Of Above Topic</summary>
+<details><summary>Code Example Of Above Topic</summary>
 
-```js
+```Javascript
 function createStatusLogger(status) {
   return function (userName) {
     return `${userName}'s status : ${status}`;
