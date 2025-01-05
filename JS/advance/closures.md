@@ -2,9 +2,10 @@
 
 ## Introduction
 
-- Closures are collection of functions and variables which belongs to outer function's scope.
+- Closure is collection of functions and lexical environment which belongs to outer function's scope.
 - Closures use lexical environment of function they are defined in.
 - Closures are created every time, when a function call.
+- Closures retains it's lexical environment variables even if executed outside where the closures are defined;
 - Closures use lexical scoping , which describes parser to parse variables from a function and lexical means that the closures use use variables of the function they are defined in.
 - Closures provides encapsulation and state management.
 
@@ -232,7 +233,6 @@ export const setX = (val) => {
 import { x } from './mainModule.js';
 
 export const getX = () => x;
-}
 
 ```
 
