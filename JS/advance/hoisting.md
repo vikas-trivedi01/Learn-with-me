@@ -9,7 +9,7 @@
 - Only declarations are hoisted not initializations.
 - Only function declarations are hoisted , function expressions and arrow functions are not.
 - Variables with **var** are hoisted and initialized with **undefined**.
-- variables with **Let** and **Const** and classes are hoisted but not initialized and would not be accessible until their declarations,leading to temporal dead zone.
+- variables with **let** and **const** and classes are hoisted but not initialized and would not be accessible until their declarations,leading to temporal dead zone.
 
 ## Core Concepts
 
@@ -29,13 +29,15 @@ console.log(a); // Outputs 10
 
 </details>
 
+- Variables declared with **var** are hoisted and initialized with **undefined**.
+
 #### Let & Const
 
 <details><summary>Code Example Of Above Topic</summary>
 
 ```Javascript
-console.log(a); // Outputs Reference Error "cannot access variable before initialization"
-console.log(b); // Outputs Reference Error "cannot access variable before initialization"
+console.log(a); // Outputs ReferenceError: Cannot access 'a' before initialization
+console.log(b); // Outputs ReferenceError: Cannot access 'b' before initialization
 
 let a = 10;
 const b = 20;
@@ -46,7 +48,11 @@ console.log(b); // Outputs 20
 
 </details>
 
-#### Function Declaration
+- Variables declared with **let** & **const** are hoisted but not initialized.Thus leading to temporal dead zone from start of block until the declaration is encountered.
+
+### Hoisting of Functions
+
+#### Function Declarations
 
 <details><summary>Code Example Of Above Topic</summary>
 
@@ -60,14 +66,16 @@ function func() {
 
 </details>
 
+- Here above because of **func()** is a function declaration using **function** , it will be hoisted at top of global scope thus will be accessible if call it before it's declaration.
+
 #### Function Expressions & Arrow Functions
 
 <details><summary>Code Example Of Above Topic</summary>
 
 ```Javascript
 
-funcExp(); //Ouptputs Reference Error "cannot access function before initialization"
-funcArrow(); //Ouptputs Reference Error "cannot access function before initialization"
+funcExp(); //Ouptputs  ReferenceError
+funcArrow(); //Ouptputs ReferenceError
 
 let funcExp = function () {
     console.log("function expression will be hoisted but not be accessed");
@@ -78,6 +86,8 @@ let funcArrow = () => {
 ```
 
 </details>
+
+- Unlike <i>function declarations</i>, function expressions and arrow function are hoisted but not initialized because they will be assigned to variables and variables will be hoisted and applie
 
 ## Benefits of Understanding Hoisting
 
