@@ -118,6 +118,35 @@ parent(5);
 
 </details>
 
+---
+### Closures with block scope
+
+- Closures can be used with block scope variables to treat variables as private, thus making layer of encapsulation.
+
+```Javascript
+
+function createCounter() {
+    let count = 0; // private variable
+
+    // closure
+    return { 
+            // public methods as properties
+
+            increment : () => ++count,
+            
+            decrement : () => --count,
+    
+    };
+
+}
+
+const counter = createCounter();
+
+console.log(`Counter current value : ${counter.increment()}`); // Outputs Counter current value : 1
+console.log(`Counter current value : ${counter.increment()}`); // Outputs Counter current value : 2
+console.log(`Counter current value : ${counter.decrement()}`); // Outputs Counter current value : 1
+
+```
 ## Conclusion
 
 - Javascript's scope is one of the weakness of ES6, but after ES6 introduction to **let** or **const** facilitated block scoped variables.
