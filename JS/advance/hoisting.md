@@ -96,3 +96,4 @@ let funcArrow = () => {
 2. Writing Cleaner Code : Writing variables at top level of current scope would be more readable.
 
 3. Debugging : Understanding how hoisting works and which declarations are hoisted and can be accessed can help while debugging scope related issues.
+.
