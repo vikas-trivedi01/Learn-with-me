@@ -85,6 +85,8 @@ console.log(`Value of x is ${x}`); // Outputs ReferenceError
 
 - Such problems can be solved by creating local scopes using **IIFE** by encapsulating related global variables toghether.
 
+- **Temporal Dead Zone (TDZ)** : Variables declared as <i>let</i> or <i>const</i> are in temporal dead zone from starting of block scope until initialization encountered. However, this prevents accessing them before declaration, unlike var which gets hoisted and initialized to undefined.
+
 ## Advance Insights
 
 - Scope is a widely used in **lexical scoping** and **closures**.
