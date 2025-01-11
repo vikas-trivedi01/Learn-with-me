@@ -224,3 +224,55 @@ assign(5);
 
 console.log(globalThis.x); // Outputs 5
 ```
+
+2. Passing **object** reference
+- Using object as reference to `this`, we assign context to `this` <i>implicitly</i>.
+
+```Javascript
+const assignValues = {
+    method(val) {
+        this.x = val;
+    }
+}
+
+assignValues.method(5);
+console.log(assignValues.x); // Outputs 5
+```
+
+- Here we use **assignValues** as object context for `this`.
+
+3. Using **call** or **apply**.
+- Using call or apply we assign context to `this` <i>explicitly</i>.
+
+```Javascript
+const valueAssigner = {
+    assignValue(val) {
+        this.value = val;
+    }
+}
+
+const targetObject = {};
+
+valueAssigner.assignValue.call(targetObject, 5);
+
+console.log(targetObject.value); // Outputs 5
+```
+
+- Here we use **call** and called the <i>assignValue</i> of <i>valueAssigner</i> with context(reference) of <i>targetObject</i> for `this` explicitly.
+
+4. Using **new**
+- Using **new** we can instantiate a new context(object) and pass as reference to `this` and it will return an object which have operations performed on it(function calls, etc...).
+
+```Javascript
+const valueAssigner = {
+    assignValue : function(val) {
+        this.value = val;
+    }
+}
+
+const targetObject = new valueAssigner.assignValue(10);
+
+console.log(targetObject.value); // Outputs 10
+```
+- Notice, the **assignValue (method)** is now changed to a property having a function expression.
+- This change is necessary in-order to use **new**.
