@@ -42,10 +42,12 @@ obj.printThis();
 
 - Output shows that `this` in <i>printThis()</i> refers to <i>obj</i> because at call-site the <i>printThis()</i> was invoked with reference to <i>obj</i>.
 
-### Weird Thing
+#### Weird Thing
 
 - `this` is so unpredictable. It refers to what , depends on execution and current context, how function was called.
 
+
+### `this` value based execution context and modes
 #### Global Context
 
 1. Using **non - strict** mode
@@ -62,7 +64,7 @@ console.log(this); // Outputs window object
 - In Nodejs :
 
 ```Javascript
-console.log(this); // Outputs global object
+console.log(this); // Outputs { } 
 ```
 
 2. Using **strict** mode
@@ -98,7 +100,7 @@ test();
 
 ```Javascript
 function test() {
-    console.log(this); // Outputs global object
+    console.log(this); // Outputs { } 
 }
 
 test();
@@ -143,7 +145,7 @@ obj.method();
 const obj = {
 
     method : () => {
-        console.log(this); // Outputs In browser : window and in Nodejs : global
+        console.log(this); // Outputs In browser : window and in Nodejs : { }
     }
 };
 
@@ -170,4 +172,55 @@ class myClass {
 const obj = new myClass();
 obj.method();
 
+```
+
+### Context Assignment of `this`
+
+- Based on how `this - aware` functions are invoked there are <i>four</i> ways in which `this` can be assigned with context.
+
+1. **Default** reference.
+2. Passing **object** reference.
+3. Using **call** or **apply**.
+4. Using **new**.
+
+---
+
+1. **Default** reference
+- `this` refers to default reference when no object is there when the method was called and also depends on mode, whether **strict** or **non - strict**.
+
+- **strict** Mode
+- In this mode `this` refers to **undefined**.
+
+```Javascript
+"use strict";
+
+const assignValues = {
+    method(val) {
+        this.x = val;
+    }
+}
+
+const assign = assignValues.method;
+assign(5);
+
+// Outputs
+// TypeError: Cannot set properties of
+// undefined (setting 'x')
+```
+
+- **non - strict** Mode
+- In this mode `this` refers to **global object**.
+
+```Javascript
+const assignValues = {
+    method(val) {
+        this.x = val;
+    }
+}
+
+const assign = assignValues.method;
+
+assign(5);
+
+console.log(globalThis.x); // Outputs 5
 ```
