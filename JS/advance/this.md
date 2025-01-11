@@ -46,8 +46,8 @@ obj.printThis();
 
 - `this` is so unpredictable. It refers to what , depends on execution and current context, how function was called.
 
-
 ### `this` value based execution context and modes
+
 #### Global Context
 
 1. Using **non - strict** mode
@@ -64,7 +64,7 @@ console.log(this); // Outputs window object
 - In Nodejs :
 
 ```Javascript
-console.log(this); // Outputs { } 
+console.log(this); // Outputs { }
 ```
 
 2. Using **strict** mode
@@ -100,7 +100,7 @@ test();
 
 ```Javascript
 function test() {
-    console.log(this); // Outputs { } 
+    console.log(this); // Outputs { }
 }
 
 test();
@@ -186,6 +186,7 @@ obj.method();
 ---
 
 1. **Default** reference
+
 - `this` refers to default reference when no object is there when the method was called and also depends on mode, whether **strict** or **non - strict**.
 
 - **strict** Mode
@@ -226,6 +227,7 @@ console.log(globalThis.x); // Outputs 5
 ```
 
 2. Passing **object** reference
+
 - Using object as reference to `this`, we assign context to `this` <i>implicitly</i>.
 
 ```Javascript
@@ -242,6 +244,7 @@ console.log(assignValues.x); // Outputs 5
 - Here we use **assignValues** as object context for `this`.
 
 3. Using **call** or **apply**.
+
 - Using call or apply we assign context to `this` <i>explicitly</i>.
 
 ```Javascript
@@ -261,6 +264,7 @@ console.log(targetObject.value); // Outputs 5
 - Here we use **call** and called the <i>assignValue</i> of <i>valueAssigner</i> with context(reference) of <i>targetObject</i> for `this` explicitly.
 
 4. Using **new**
+
 - Using **new** we can instantiate a new context(object) and pass as reference to `this` and it will return an object which have operations performed on it(function calls, etc...).
 
 ```Javascript
@@ -274,5 +278,15 @@ const targetObject = new valueAssigner.assignValue(10);
 
 console.log(targetObject.value); // Outputs 10
 ```
+
 - Notice, the **assignValue (method)** is now changed to a property having a function expression.
 - This change is necessary in-order to use **new**.
+
+### Determination of `this`'s Context For a Function Invokation
+
+- Here is the listing in form of precedence, how actually `this` will be determined, for a function.
+
+1. Check if function invokation occured using **new**, creating and setting a new `this`.
+2. Check if function invokstion occured by object, setting `this` explicitly.
+3. Check if function invokstion occured by **call** or **apply**, setting `this` implicitly.
+4. If no external/specific object reference is given and if the codebase in **strict** the `this` is set to <i>undefined</i>, if not so then it will be set to <i>globalThis</i>.
