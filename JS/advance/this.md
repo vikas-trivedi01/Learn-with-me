@@ -19,7 +19,6 @@
 ### Basic Example
 
 ```Javascript
-
 const obj = {
     x : 10,
     y : 20,
@@ -34,8 +33,6 @@ obj.printThis();
 // Outputs
 // Value of 'this' is
 // {"x":10,"y":20}
-
-
 ```
 
 - Here <i>printThis()</i> is a **this - aware** function.(<i>i.e</i>) - It contains `this` in it.
@@ -150,7 +147,6 @@ const obj = {
 };
 
 obj.method();
-
 ```
 
 #### Class Methods
@@ -171,7 +167,50 @@ class myClass {
 
 const obj = new myClass();
 obj.method();
+```
 
+#### Event Handlers
+
+- In event handlers `this` refers to the element which fired the event.
+
+```Javascript
+document.getElementById('btn').addEventListener('click',function () {
+    console.log(this); // `this` refers to the button element
+});
+```
+
+### **bind** To Avoid Context Loss
+
+```Javascript
+const person = {
+    name : "abc",
+    greet() {
+        console.log(`Hey ${this.name} !`);
+    },
+};
+
+const greet = person.greet.bind(person);
+greet(); // Outputs Hey abc !
+```
+
+- Here we called the <i>greet</i> and bind the person object as `this` reference.
+
+### Arrow Function For Consistent `this`
+
+```Javascript
+class Timer {
+    constructor() {
+        this.seconds = 0;
+    }
+    start () {
+        setInterval(()=> {
+            this.seconds++;
+            console.log(this.seconds);
+        },1000);
+    }
+}
+const timer = new Timer();
+timer.start();
 ```
 
 ### Context Assignment of `this`
