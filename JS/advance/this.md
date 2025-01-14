@@ -2,7 +2,7 @@
 
 ## Introduction
 
-- `this` keyword refers to current context upon which a function is called.
+- The `this` keyword refers to the current context in which a function is called, i.e., it refers to the object that invoked the function or the constructor.
 
 - Where `this` points to which value will be determined on basis of <i>HOW</i> the function was called, not basis of <i>WHERE</i> the function was defined or called from.
 
@@ -18,7 +18,7 @@
 
 ### Basic Example
 
-```Javascript
+```javascript
 const obj = {
     x : 10,
     y : 20,
@@ -54,13 +54,13 @@ obj.printThis();
 
 - In Browser :
 
-```Javascript
+```javascript
 console.log(this); // Outputs window object
 ```
 
 - In Nodejs :
 
-```Javascript
+```javascript
 console.log(this); // Outputs { }
 ```
 
@@ -70,7 +70,7 @@ console.log(this); // Outputs { }
 - In Both Browser and Nodejs:
 - `this` is **undefined** in the global context.
 
-```Javascript
+```javascript
 'use strict';
 console.log(this); // undefined
 ```
@@ -85,7 +85,7 @@ console.log(this); // undefined
 
 - In Browser :
 
-```Javascript
+```javascript
 function test() {
     console.log(this); // Outputs window object
 }
@@ -95,7 +95,7 @@ test();
 
 - In Nodejs :
 
-```Javascript
+```javascript
 function test() {
     console.log(this); // Outputs { }
 }
@@ -109,7 +109,7 @@ test();
 - In Both Browser and Nodejs:
 - `this` is **undefined** in the global context.
 
-```Javascript
+```javascript
 'use strict';
 function test() {
     console.log(this); // undefined
@@ -122,7 +122,7 @@ test();
 
 - `this` refers to the object the method was called on. no matter whether `this` is in , **non - strict or strict** mode or in **Browser or Nodejs**.
 
-```Javascript
+```javascript
 
 const obj = {
     method : function test() {
@@ -137,7 +137,7 @@ obj.method();
 
 - Arrow functions do not have their own `this` reference , they inherit `this` from enclosing lexical context.
 
-```Javascript
+```javascript
 
 const obj = {
 
@@ -153,7 +153,7 @@ obj.method();
 
 - In class's method `this` refers to the class's instance.
 
-```Javascript
+```javascript
 
 class myClass {
     constuctor() {
@@ -173,7 +173,7 @@ obj.method();
 
 - In event handlers `this` refers to the element which fired the event.
 
-```Javascript
+```javascript
 document.getElementById('btn').addEventListener('click',function () {
     console.log(this); // `this` refers to the button element
 });
@@ -181,7 +181,7 @@ document.getElementById('btn').addEventListener('click',function () {
 
 ### **bind** To Avoid Context Loss
 
-```Javascript
+```javascript
 const person = {
     name : "abc",
     greet() {
@@ -197,7 +197,7 @@ greet(); // Outputs Hey abc !
 
 ### Arrow Function For Consistent `this`
 
-```Javascript
+```javascript
 class Timer {
     constructor() {
         this.seconds = 0;
@@ -231,7 +231,7 @@ timer.start();
 - **strict** Mode
 - In this mode `this` refers to **undefined**.
 
-```Javascript
+```javascript
 "use strict";
 
 const assignValues = {
@@ -251,7 +251,7 @@ assign(5);
 - **non - strict** Mode
 - In this mode `this` refers to **global object**.
 
-```Javascript
+```javascript
 const assignValues = {
     method(val) {
         this.x = val;
@@ -269,7 +269,7 @@ console.log(globalThis.x); // Outputs 5
 
 - Using object as reference to `this`, we assign context to `this` <i>implicitly</i>.
 
-```Javascript
+```javascript
 const assignValues = {
     method(val) {
         this.x = val;
@@ -286,7 +286,7 @@ console.log(assignValues.x); // Outputs 5
 
 - Using call or apply we assign context to `this` <i>explicitly</i>.
 
-```Javascript
+```javascript
 const valueAssigner = {
     assignValue(val) {
         this.value = val;
@@ -306,7 +306,7 @@ console.log(targetObject.value); // Outputs 5
 
 - Using **new** we can instantiate a new context(object) and pass as reference to `this` and it will return an object which have operations performed on it(function calls, etc...).
 
-```Javascript
+```javascript
 const valueAssigner = {
     assignValue : function(val) {
         this.value = val;

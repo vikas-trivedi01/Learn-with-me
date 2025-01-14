@@ -39,7 +39,7 @@
 
 1. Global Scope
 
-```Javascript
+```javascript
 let x = 10;
 
 function printX() {
@@ -52,7 +52,7 @@ printX();
 
 2. Local / Function Scope
 
-```Javascript
+```javascript
 
 function printX() {
     let x = 10;
@@ -67,7 +67,7 @@ console.log(`Value of x is ${x}`); // Outputs ReferenceError
 
 3. Block Scope
 
-```Javascript
+```javascript
 
 if (true) {
     let x = 10;
@@ -95,7 +95,7 @@ console.log(`Value of x is ${x}`); // Outputs ReferenceError
 
 <details><summary> Code Example Of Above Topic </summary>
 
-```Javascript
+```javascript
 function parent(arg) {
     let parentVariable = 10;
 
@@ -123,7 +123,7 @@ parent(5);
 
 - Closures can be used with block scope variables to treat variables as private, thus making layer of encapsulation.
 
-```Javascript
+```javascript
 
 function createCounter() {
     let count = 0; // private variable
@@ -149,7 +149,7 @@ console.log(`Counter current value : ${counter.decrement()}`); // Outputs Counte
 ```
 ## Conclusion
 
-- Javascript's scope is one of the weakness of ES6, but after ES6 introduction to **let** or **const** facilitated block scoped variables.
+- javascript's scope is one of the weakness of ES6, but after ES6 introduction to **let** or **const** facilitated block scoped variables.
 
 - Scopes provide flexibility and accessibility of how we can declare, manipulate variables.
 

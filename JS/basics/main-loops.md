@@ -11,7 +11,7 @@
 
 - Used widely with objects . An object is a collection of key - value pairs. Thus it's not recommended to iterate an object via other loops.
 
-```Javascript
+```javascript
 const cars = {
   carName: "Fortuner",
   color: "black",
@@ -37,7 +37,7 @@ for (let carProp in cars) {
 
 - Used widely with arrays, sets, maps, strings . These iterable's values can be accessed using this loop.
 
-```Javascript
+```javascript
 const cars = ["fortuner", "mustang", "rangerover"];
 
 for (let carName in cars) {

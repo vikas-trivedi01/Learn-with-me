@@ -17,7 +17,7 @@
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function generateEncryption(encryptionString) {
   return function (userPassword) {
     return `${userPassword}-${encryptionString}`;
@@ -43,7 +43,7 @@ console.log(userEncryptedPass("firstUser"));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 const newCounter = function () {
   let cnt = 0;
   function changeCnt(value) {
@@ -104,7 +104,7 @@ console.log(
 - Here we will use closure to perform memoization.
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function memoize(func) {
     let cache = {};
 
@@ -148,7 +148,7 @@ console.log(`Doubled Value ${doubledValue3} returned in ${time3} ms.`);
 - We can create closures on variables which are in block of something.
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 let getX;
 
 {
@@ -178,7 +178,7 @@ console.log(`Value of X : ${getX()}`); // Outputs 5
 <details><summary>Code Example Of Above Topic</summary>
 <details><summary>mainModule.js</summary>
 
-```Javascript
+```javascript
 let x = 1;
 
 export const getX = () => x;
@@ -192,7 +192,7 @@ export const setX = (val) => {
 
 <details><summary>main.js</summary>
 
-```Javascript
+```javascript
 import { getX, setX } from "./mainModule.js";
 
 console.log(`${getX()}`); // Outputs 1
@@ -216,7 +216,7 @@ console.log(`${getX()}`); // Outputs 2
 <details><summary>Code Example Of Above Topic</summary>
 <details><summary>mainModule.js</summary>
 
-```Javascript
+```javascript
 export let x = 1;
 
 export const setX = (val) => {
@@ -228,7 +228,7 @@ export const setX = (val) => {
 
 <details><summary>getter.js</summary>
 
-```Javascript
+```javascript
 
 import { x } from './mainModule.js';
 
@@ -240,7 +240,7 @@ export const getX = () => x;
 
 <details><summary>main.js</summary>
 
-```Javascript
+```javascript
 import { setX } from "./mainModule.js";
 import { getX } from "./getter.js";
 
@@ -287,7 +287,7 @@ console.log(`${getX()}`);
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function showFieldSuggestion (fieldSuggestion) {
   document.getElementById('field_suggestion').textContent = fieldSuggestion;
 }
@@ -333,7 +333,7 @@ setupFieldsSuggestion();
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function itemObj (name,message) {
   this.name = name.toString;
   this.message = message.toString;
@@ -355,7 +355,7 @@ function itemObj (name,message) {
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function itemObj (name,message) {
   this.name = name.toString;
   this.message = message.toString;

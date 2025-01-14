@@ -15,7 +15,7 @@
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function sayHello(name) {
   return `Hello ${name}!`;
 }
@@ -33,7 +33,7 @@ console.log(sayHello("Robert"));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 const sayHello = function (name) {
   return `Hello ${name}!`;
 };
@@ -52,7 +52,7 @@ console.log(sayHello("Robert"));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 const sayHello = (name) => `Hello ${name}!`;
 console.log(sayHello("Robert"));
 
@@ -68,7 +68,7 @@ console.log(sayHello("Robert"));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function sayHello(name = "Guest") {
   return `Hello ${name}!`;
 }
@@ -86,7 +86,7 @@ console.log(sayHello());
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function multiplyBy(multiplier, ...toMultiplyNums) {
   return toMultiplyNums.map((numToMultiply) => {
     return multiplier * numToMultiply;
@@ -108,7 +108,7 @@ console.log(multiplyBy(2, 2, 3, 4));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 let user = {
     id : "user123",
     pass : "user",
@@ -146,7 +146,7 @@ console.log(addUserAge(parseInt(20,10));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 (function () {
   console.log("This runs immediately!");
 })();
@@ -165,7 +165,7 @@ console.log(addUserAge(parseInt(20,10));
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 function createStatusLogger(status) {
   return function (userName) {
     return `${userName}'s status : ${status}`;

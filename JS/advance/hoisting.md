@@ -19,7 +19,7 @@
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 console.log(a); // Outputs undefined
 
 var a = 10;
@@ -35,7 +35,7 @@ console.log(a); // Outputs 10
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 console.log(a); // Outputs ReferenceError: Cannot access 'a' before initialization
 console.log(b); // Outputs ReferenceError: Cannot access 'b' before initialization
 
@@ -56,7 +56,7 @@ console.log(b); // Outputs 20
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 func(); // Outputs Hoisted
 
 function func() {
@@ -72,7 +72,7 @@ function func() {
 
 <details><summary>Code Example Of Above Topic</summary>
 
-```Javascript
+```javascript
 
 funcExp(); //Ouptputs  ReferenceError
 funcArrow(); //Ouptputs ReferenceError
