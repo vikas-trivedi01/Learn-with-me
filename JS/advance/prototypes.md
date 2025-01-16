@@ -12,6 +12,36 @@
 - This creates **prototype chain**, it end's where the `prototype` of an object is **null**.
 - Normal object's prototype points to one object called `Object.prototype` and that object's `prototype` points to **null**.
 
+### Prototype Chain
+
+- As every object has a `prototype`.
+- Whenever a property is being accessed.
+- If not found in the object itself, it's `prototype` will be checked.
+- If not found there also, then the same process will be get reapeted until either property is found or an object's `prototype` is **null**.
+
+- Here when **getFloorNumber()** invoked, firstly **newClasssRoom** object's all properties are checked and if property not found.
+- **newClasssRoom** object's `prototype` will be refered to get the property, and if still not found it will go further until either the property is found or object's `prototype` is **null** this creates a <i>prototype chain</i>.
+
+```javascript
+function Classroom(floorNumber) {
+  this.floorNumber = floorNumber;
+}
+
+Classroom.prototype.getFloorNumber = function() {
+  return this.floorNumber;
+}
+
+const newClasssRoom = new Classroom(1);
+
+newClasssRoom.getFloorNumber();
+
+console.log(Object.getPrototypeOf(newClasssRoom) == Classroom.prototype); // Outputs true
+console.log(Object.getPrototypeOf(Classroom.prototype) == Object.prototype); // Outputs true
+```
+- Here first log will display <i>true</i> because of `prototype` of the newly created object will refer to the constructor function's `prototype`(**Classroom.prototype**).
+
+- Second log will display <i>true</i> because of `prototype` (Object) of the constructor function's `prototype (Function)` will be **Object.prototype**.
+
 ### Examples For Everything Is Object
 
 1. Starting With Functions
