@@ -27,9 +27,9 @@ function Classroom(floorNumber) {
   this.floorNumber = floorNumber;
 }
 
-Classroom.prototype.getFloorNumber = function() {
+Classroom.prototype.getFloorNumber = function () {
   return this.floorNumber;
-}
+};
 
 const newClasssRoom = new Classroom(1);
 
@@ -38,6 +38,7 @@ newClasssRoom.getFloorNumber();
 console.log(Object.getPrototypeOf(newClasssRoom) == Classroom.prototype); // Outputs true
 console.log(Object.getPrototypeOf(Classroom.prototype) == Object.prototype); // Outputs true
 ```
+
 - Here first log will display <i>true</i> because of `prototype` of the newly created object will refer to the constructor function's `prototype`(**Classroom.prototype**).
 
 - Second log will display <i>true</i> because of `prototype` (Object) of the constructor function's `prototype (Function)` will be **Object.prototype**.
@@ -176,9 +177,19 @@ console.log(`Is both prototypes are same : ${Object.getPrototypeOf(obj) == Objec
 
 ### Difference Between :
 
-1. \_ _ proto _ \_
-2. prototype
-3. [[Prototype]]
+<table>
+  <tr>
+    <th> \_ _ proto _ \_ </th>
+    <th> prototype </th>
+    <th> [[Prototype]] </th>
+  </tr>
+
+  <tr>
+    <td> A property present in every object, which gives access to `prototype` of an object</td>
+    <td> Every object has an internal link to another object which is called it's `prototype`</td>
+    <td> JS engine use `[[Prototype]]` to lookup for the object's `prototype`</td>
+  </tr>
+</table>
 
 #### Image Credits
 
