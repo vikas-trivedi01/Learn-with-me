@@ -1,5 +1,20 @@
 # Prototypes
 
+Table Of Contents
+- [Prototypes](#prototypes)
+  - [Introduction](#introduction)
+    - [Prototypes](#prototypes-1)
+    - [Prototype Chain](#prototype-chain)
+    - [Examples For Everything Is Object](#examples-for-everything-is-object)
+    - [Shadowing Properties](#shadowing-properties)
+    - [Setting `prototype`](#setting-prototype)
+    - [\_ \_ proto \_ \_](#_-_-proto-_-_)
+    - [Difference Between :](#difference-between-)
+    - [`prototype` in Functions](#prototype-in-functions)
+      - [Example to set the `prototype`](#example-to-set-the-prototype)
+      - [Impact of dynamic `prototype` changes](#impact-of-dynamic-prototype-changes)
+
+
 ## Introduction
 
 - Everything in **javascript** is an <i>object</i>. Let's prove it further in this section.

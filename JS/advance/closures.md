@@ -1,5 +1,23 @@
 # Closures
 
+Table Of Contents
+- [Closures](#closures)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+    - [Normal Closures](#normal-closures)
+    - [Closures as Factory Functions \& Class](#closures-as-factory-functions--class)
+    - [Closure to Perform Memoization](#closure-to-perform-memoization)
+    - [Closures Based On Scopes](#closures-based-on-scopes)
+      - [Block Scope Closures](#block-scope-closures)
+      - [Module Scope Closures](#module-scope-closures)
+      - [Without Exporting Variables](#without-exporting-variables)
+      - [With Exporting Variables](#with-exporting-variables)
+      - [Difference Between These Two Ways](#difference-between-these-two-ways)
+    - [Closures in Loop](#closures-in-loop)
+    - [Performance Insights](#performance-insights)
+      - [Injecting Unnecessary Functions Inside Functions For a Common Task](#injecting-unnecessary-functions-inside-functions-for-a-common-task)
+
+
 ## Introduction
 
 - Closure is collection of functions and lexical environment which belongs to outer function's scope.

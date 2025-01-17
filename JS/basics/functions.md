@@ -1,5 +1,22 @@
 # Functions
 
+Table Of Contents
+- [Functions](#functions)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+    - [Function Declaration](#function-declaration)
+    - [Function Expressions](#function-expressions)
+    - [Arrow Functions](#arrow-functions)
+    - [Default Parameters](#default-parameters)
+    - [REST Parameters](#rest-parameters)
+    - [SPREAD Parameters](#spread-parameters)
+  - [Real-World Applications](#real-world-applications)
+  - [Advance Insights](#advance-insights)
+    - [IIFE (Immediately Invoked Function Expressions)](#iife-immediately-invoked-function-expressions)
+    - [Higher-Order Functions](#higher-order-functions)
+  - [Conclusion](#conclusion)
+
+
 ## Introduction
 
 - Functions are widely used in js.They are reusable code chunks and provides modularity, reusability, efficiency.

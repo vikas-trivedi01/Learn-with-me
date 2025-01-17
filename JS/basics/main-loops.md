@@ -1,5 +1,14 @@
 # 1. Loops: for...in and for...of
 
+Table Of Contents
+- [1. Loops: for...in and for...of](#1-loops-forin-and-forof)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+    - [**for...in**](#forin)
+    - [**for...of**](#forof)
+  - [Conclusion](#conclusion)
+
+
 ## Introduction
 
 - These are loops for iterating over objects, arrays, sets, maps, strings depending on use cases.

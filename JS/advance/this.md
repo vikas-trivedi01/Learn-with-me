@@ -1,5 +1,24 @@
 # This
 
+Table Of Contents
+- [This](#this)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+    - [Basic Example](#basic-example)
+      - [Weird Thing](#weird-thing)
+    - [`this` value based execution context and modes](#this-value-based-execution-context-and-modes)
+      - [Global Context](#global-context)
+      - [Inside Functions](#inside-functions)
+      - [Inside Method of an Object](#inside-method-of-an-object)
+      - [Arrow Functions](#arrow-functions)
+      - [Class Methods](#class-methods)
+      - [Event Handlers](#event-handlers)
+    - [**bind** To Avoid Context Loss](#bind-to-avoid-context-loss)
+    - [Arrow Function For Consistent `this`](#arrow-function-for-consistent-this)
+    - [Context Assignment of `this`](#context-assignment-of-this)
+    - [Determination of `this`'s Context For a Function Invokation](#determination-of-thiss-context-for-a-function-invokation)
+
+
 ## Introduction
 
 - The `this` keyword refers to the current context in which a function is called, i.e., it refers to the object that invoked the function or the constructor.

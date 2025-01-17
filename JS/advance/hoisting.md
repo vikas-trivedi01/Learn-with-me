@@ -1,5 +1,19 @@
 # Hoisting
 
+Table Of Contents
+- [Hoisting](#hoisting)
+  - [Introduction](#introduction)
+  - [Key Points About Hoisting](#key-points-about-hoisting)
+  - [Core Concepts](#core-concepts)
+    - [Hoisting of Variables](#hoisting-of-variables)
+      - [Var](#var)
+      - [Let \& Const](#let--const)
+    - [Hoisting of Functions](#hoisting-of-functions)
+      - [Function Declarations](#function-declarations)
+      - [Function Expressions \& Arrow Functions](#function-expressions--arrow-functions)
+  - [Benefits of Understanding Hoisting](#benefits-of-understanding-hoisting)
+
+
 ## Introduction
 
 - Hoisting is a mechanism in javascript which moves/hoistes variables/functions to top of the current scope.

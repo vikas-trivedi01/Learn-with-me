@@ -1,5 +1,15 @@
 # Scopes
 
+Table Of Contents
+- [Scopes](#scopes)
+  - [Introduction](#introduction)
+  - [Core Concepts](#core-concepts)
+    - [Drawbacks](#drawbacks)
+  - [Advance Insights](#advance-insights)
+    - [Closures with block scope](#closures-with-block-scope)
+  - [Conclusion](#conclusion)
+
+
 ## Introduction
 
 - Scope refers to current context of code.
