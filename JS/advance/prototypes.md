@@ -185,9 +185,9 @@ console.log(`Is both prototypes are same : ${Object.getPrototypeOf(obj) == Objec
   </tr>
 
   <tr>
-    <td> A property present in every object, which gives access to `prototype` of an object</td>
-    <td> Every object has an internal link to another object which is called it's `prototype`</td>
-    <td> JS engine use `[[Prototype]]` to lookup for the object's `prototype`</td>
+    <td> A property present in every object, which gives access to <b>prototype</b> of an object</td>
+    <td> Every object has an internal link to another object which is called it's <b>prototype</b></td>
+    <td> JS engine use <b>[[Prototype]]</b> to lookup for the object's <b>prototype</b></td>
   </tr>
 </table>
 
@@ -213,7 +213,7 @@ const newPerson = new Person("p1");
 newPerson.getName();
 ```
 
-- However, above code works same as below modern js code.
+- However, above code works same as below (<i>modern js code</i>) .
 
 ```Javascript
 
@@ -237,14 +237,100 @@ class Person {
 
 ```Javascript
 console.log(Person.prototype);
-
-// Outputs
-// {getName: ƒ}getName: ƒ ()constructor: ƒ Person(name)[[Prototype]]: Object
 ```
+
+- Ouputs
+  ![set the `prototype` output](../img/constructor-prototype.png)
 
 #### Impact of dynamic `prototype` changes
 
-- If already have methods / variables in `prototype` and objects are already instantiated and if now some changes are made in `prototype`, the old objects will still refer to the old `prototype`.
+1. Direct Inplace Changes In `prototype`
+
+```Javascript
+function Person(name) {
+  this.name = name
+}
+
+Person.prototype.getName = function(){
+        console.log(this.name);
+}
+
+const newPerson = new Person("p1");
+
+console.log("newPerson before update of prototype");
+console.log(Object.getPrototypeOf(newPerson));
+
+Person.prototype.setName = function(newName) {
+  this.name = newName;
+}
+
+const newPerson2 = new Person("p2");
+
+console.log("newPerson after update of prototype");
+console.log(Object.getPrototypeOf(newPerson));
+
+console.log("newPerson2 after update of prototype");
+console.log(Object.getPrototypeOf(newPerson2));
+```
+
+- Ouputs
+  ![Direct Inplace Changes In `prototype` output](../img/direct-change.png)
+
+- Using this method of changing `prototype`, we directly used **Person.prototype.<<functionName>>** - to chnage the `prototype`.
+
+- Thus object <i>newPerson</i> : before updatation of `prototype` have only one method **getName()**.
+
+- After updation of `prototype` using this method, updates will propagate in every instance of the constructor function.
+
+- Thus its obvious that the object <i>newPerson2</i> : will have access to both the methods in `prototype`.
+
+- But in this case here, the older object <i>newPerson</i> : will also has the updated `prototype` (i.e) the both methods **getName()** and **setName()**.
+
+2. Reassignment of `prototype` with a new object
+
+```Javascript
+
+function Person(name) {
+  this.name = name
+}
+
+Person.prototype = {
+  getName: function () {
+    console.log(this.name);
+  }
+}
+
+const newPerson = new Person("p1")
+
+console.log("newPerson before update of prototype");
+console.log(Object.getPrototypeOf(newPerson));
+
+Person.prototype = {
+  ...Person.prototype, setName: function (newName) {
+    this.name = newName;
+  }
+}
+
+
+const newPerson2 = new Person("p2");
+
+console.log("newPerson after update of prototype");
+console.log(Object.getPrototypeOf(newPerson));
+
+console.log("newPerson2 after update of prototype");
+console.log(Object.getPrototypeOf(newPerson2));
+```
+
+- Ouputs
+  ![Reassignment Changes In `prototype` output](../img/reassignment-change.png)
+
+- Using this method of changing `prototype`, we dont't used **Person.prototype.<<functionName>>** directly to chnage the `prototype`.
+
+- Thus object <i>newPerson</i> : before and after updatation of `prototype` have only one method **getName()**.
+
+- After updation of `prototype` using this method, updates will not propagate in every(older) instance of the constructor function.
+
+- Thus changes will only reflect on newly created objects (<i>newPerson2</i>) after changes in `prototype`.
 
 #### Images Credit
 
