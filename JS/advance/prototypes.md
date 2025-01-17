@@ -58,6 +58,9 @@ console.log(Object.getPrototypeOf(Object.getPrototypeOf(func)));
 
 ![Object.prototype](https://codeforgeek.com/wp-content/uploads/2023/02/Object-prototype-constructor.jpg)
 
+- Credit
+- https://codeforgeek.com
+
 </details>
 <br />
 
@@ -72,6 +75,9 @@ console.log(Object.prototype);
 <details><summary>Output</summary>
 
 ![Object.prototype](https://codeforgeek.com/wp-content/uploads/2023/02/Object-prototype-constructor.jpg)
+
+- Credit
+- https://codeforgeek.com
 
 </details>
 <br />
@@ -156,6 +162,9 @@ console.log(Object.getPrototypeOf(obj));
 
 ![Object.getPrototypeOf(obj)](https://codeforgeek.com/wp-content/uploads/2023/02/Object-prototype-constructor.jpg)
 
+- Credit
+- https://codeforgeek.com
+
 </details>
 <br />
 
@@ -167,6 +176,9 @@ console.log(Object.prototype);
 <details><summary>Output</summary>
 
 ![Object.prototype](https://codeforgeek.com/wp-content/uploads/2023/02/Object-prototype-constructor.jpg)
+
+- Credit
+- https://codeforgeek.com
 
 </details>
 <br />
@@ -240,7 +252,10 @@ console.log(Person.prototype);
 ```
 
 - Ouputs
-  ![set the `prototype` output](../img/constructor-prototype.png)
+
+<br />
+
+![set the `prototype` output](../img/constructor-prototype.png)
 
 #### Impact of dynamic `prototype` changes
 
@@ -274,7 +289,10 @@ console.log(Object.getPrototypeOf(newPerson2));
 ```
 
 - Ouputs
-  ![Direct Inplace Changes In `prototype` output](../img/direct-change.png)
+
+<br />
+
+ ![Direct Inplace Changes In `prototype` output](../img/direct-change.png)
 
 - Using this method of changing `prototype`, we directly used **Person.prototype.<<functionName>>** - to chnage the `prototype`.
 
@@ -322,7 +340,10 @@ console.log(Object.getPrototypeOf(newPerson2));
 ```
 
 - Ouputs
-  ![Reassignment Changes In `prototype` output](../img/reassignment-change.png)
+
+<br />
+
+ ![Reassignment Changes In `prototype` output](../img/reassignment-change.png)
 
 - Using this method of changing `prototype`, we dont't used **Person.prototype.<<functionName>>** directly to chnage the `prototype`.
 
@@ -332,6 +353,4 @@ console.log(Object.getPrototypeOf(newPerson2));
 
 - Thus changes will only reflect on newly created objects (<i>newPerson2</i>) after changes in `prototype`.
 
-#### Images Credit
 
-- https://codeforgeek.com
