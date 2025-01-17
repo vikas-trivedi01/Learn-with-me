@@ -191,6 +191,61 @@ console.log(`Is both prototypes are same : ${Object.getPrototypeOf(obj) == Objec
   </tr>
 </table>
 
-#### Image Credits
+### `prototype` in Functions
+
+- `prototype` is a property of a constructor function that refers to an object which will act as a `prototype` for objects which will be instantiated from the constructor function.
+- By default, this property of a constructor function is set to `Object.prototype`.
+- We can change it, so all objects instantiated by the constructor function will point to same `prototype`.
+
+#### Example to set the `prototype`
+
+```Javascript
+function Person(name) {
+  this.name = name
+}
+
+Person.prototype.getName = function() {
+  console.log(this.name);
+}
+
+const newPerson = new Person("p1");
+
+newPerson.getName();
+```
+
+- However, above code works same as below modern js code.
+
+```Javascript
+
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    getName() {
+        console.log(this.name);
+    }
+}
+
+
+  const newPerson = new Person("p1");
+
+  newPerson.getName();
+```
+
+- <i>Quick Check</i>
+- Take a look at, constructor function's `prototype` (i.e) object's `prototype` which will be instantiated from this constructor function.
+
+```Javascript
+console.log(Person.prototype);
+
+// Outputs
+// {getName: ƒ}getName: ƒ ()constructor: ƒ Person(name)[[Prototype]]: Object
+```
+
+#### Impact of dynamic `prototype` changes
+
+- If already have methods / variables in `prototype` and objects are already instantiated and if now some changes are made in `prototype`, the old objects will still refer to the old `prototype`.
+
+#### Images Credit
 
 - https://codeforgeek.com
