@@ -6,6 +6,9 @@ Table Of Contents
   - [Classical Inheritance](#classical-inheritance)
     - [Advantages Of Classical Inheritance](#advantages-of-classical-inheritance)
     - [Disadvantages Of Classical Inheritance](#disadvantages-of-classical-inheritance)
+  - [Prototypal Inheritance](#prototypal-inheritance)
+    - [Advantages Of Prototypal Inheritance](#advantages-of-prototypal-inheritance)
+    - [Disadvantages Of Prototypal Inheritance](#disadvantages-of-prototypal-inheritance)
 
 ##  Introduction
 
@@ -70,3 +73,65 @@ secondEmployee.displayEmployeeInfo();
 
 - <i>Classical Inheritance</i> is more rigid and supports less accessiblity for direct inheritance from other object.
 - Doesn't provide dynamic object composition from other object.
+  
+---
+
+## Prototypal Inheritance
+
+- Before **ES6**, prototyes are used to perform `inheritance` in **JavaScript**.
+    
+- `prototype` is the type of link every object have which refers to another object.
+  
+- `prototype` is used to mimic functionalities of  **constructors, methods, super keyword** to facilitate properties initialization, implementing functionalitites, call the parent constructor respectively.
+  
+- Using `prototype` its easier to create objects based on the constructor function's `prototype`, thus providing flexibility.
+
+```Javascript
+function Person( name,age ){
+    this.name = name;
+    this.age = age;
+ }
+
+function Employee( name,age,jobTitle,department ) {
+    Person.call(this,name,age);
+    this.jobTitle = jobTitle;
+    this.department = department;
+}
+
+Employee.prototype = Object.create(Person.prototype);
+Employee.prototype = Employee;
+
+Employee.prototype.displayEmployeeInfo = function() {
+  console.table([{ 
+    Name: this.name, 
+    Age: this.age, 
+    "Job Title": this.jobTitle, 
+    Department: this.department 
+  }]);
+}
+
+
+const firstEmployee = new Employee("Bob", 30, "Software Engineer", "IT");
+const secondEmployee = new Employee("Kyle", 40, "Software Engineer", "IT");
+
+firstEmployee.displayEmployeeInfo();
+secondEmployee.displayEmployeeInfo();
+```
+
+- Outputs
+
+![Prototypal-Inheritance](../img/prototypal-inheritance.png)
+
+### Advantages Of Prototypal Inheritance
+
+- Provides flexibility for `inheritance` and dynamic changes in `prototype`.
+- Provides direct access to other objects to inherit from.
+
+### Disadvantages Of Prototypal Inheritance
+
+- Performace wise its better to use <i>Classical Inheritance</i> rather than <i>Prototypal Inheritance</i>.
+- Doesn't provide intuitive syntax for `inheritance`.
+
+
+
+
