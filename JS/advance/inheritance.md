@@ -9,6 +9,10 @@ Table Of Contents
   - [Prototypal Inheritance](#prototypal-inheritance)
     - [Advantages Of Prototypal Inheritance](#advantages-of-prototypal-inheritance)
     - [Disadvantages Of Prototypal Inheritance](#disadvantages-of-prototypal-inheritance)
+  - [Advanced Insights](#advanced-insights)
+    - [super keyword In Method Overriding](#super-keyword-in-method-overriding)
+    - [Static Methods and Properties](#static-methods-and-properties)
+    - [Private Methods and Properties](#private-methods-and-properties)
 
 ##  Introduction
 
@@ -133,5 +137,90 @@ secondEmployee.displayEmployeeInfo();
 - Doesn't provide intuitive syntax for `inheritance`.
 
 
+## Advanced Insights
+
+### <i>super keyword</i> In Method Overriding
+
+```Javascript
+class User {
+  userType() {
+    console.log("User is : ");
+  }
+}
+
+class Employee extends User{
+  userType() {
+    super.userType();
+    console.log("Employee");
+
+  }
+}
+
+class Manager extends User{
+  userType() {
+    super.userType();
+    console.log("Manager");
+
+  }
+}
+
+const employee = new Employee();
+employee.userType();
+
+
+const manager = new Manager();
+manager.userType();
+
+// Outputs
+
+// User is : 
+// Employee
+
+// User is : 
+// Manager
+```
+
+### Static Methods and Properties
+
+```Javascript
+class Person {
+  static user = "Employee";
+  static userDescription() {
+    console.log("User is employee");
+  }
+}
+console.log(Person.user);
+Person.userDescription();
+
+// Outputs
+
+// Employee
+// User is employee
+```
+
+### Private Methods and Properties
+
+```Javascript
+class User {
+  #userType = null;
+  constructor(userType) {
+    this.#userType = userType;
+  }
+  #accessPrivateProp() {
+    console.log(`User type is : ${this.#userType}`);
+  }
+  accessUserType() {
+    this.#accessPrivateProp();
+  }
+}
+
+const employee = new User("employee");
+employee.accessUserType();
+
+// Outputs
+
+// Employee
+// User is employee
+```
 
 
