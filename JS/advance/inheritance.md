@@ -10,9 +10,11 @@ Table Of Contents
     - [Advantages Of Prototypal Inheritance](#advantages-of-prototypal-inheritance)
     - [Disadvantages Of Prototypal Inheritance](#disadvantages-of-prototypal-inheritance)
   - [Advanced Insights](#advanced-insights)
-    - [super keyword In Method Overriding](#super-keyword-in-method-overriding)
+    - [Super keyword In Method Overriding](#super-keyword-in-method-overriding)
     - [Static Methods and Properties](#static-methods-and-properties)
     - [Private Methods and Properties](#private-methods-and-properties)
+  - [Performance Optimization](#performance-optimization)
+  - [Common Pitfalls](#common-pitfalls)
 
 ##  Introduction
 
@@ -139,7 +141,7 @@ secondEmployee.displayEmployeeInfo();
 
 ## Advanced Insights
 
-### <i>super keyword</i> In Method Overriding
+### <i>Super keyword</i> In Method Overriding
 
 ```Javascript
 class User {
@@ -223,4 +225,12 @@ employee.accessUserType();
 // User is employee
 ```
 
+## Performance Optimization
 
+- **Avoid using prototypal inheritance** : In some cases its better to use <i>Classical Inheritance</i>, because it provides more faster and optimized accessiblity.
+- **Static variables / methods** : Used <i>static members</i> for shared logic and implementing common utilites for everything.
+
+## Common Pitfalls
+
+- **Avoid extending native `prototyes`** : Prototypes like `Object.prototype` should not be extended too much.
+- **Overuse of inheritance** : By using inheritance everywhere, we introduce tightly coupled relationships everywhere, which should be avoided.
