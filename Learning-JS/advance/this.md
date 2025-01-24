@@ -16,7 +16,7 @@ Table Of Contents
     - [**bind** To Avoid Context Loss](#bind-to-avoid-context-loss)
     - [Arrow Function For Consistent `this`](#arrow-function-for-consistent-this)
     - [Context Assignment of `this`](#context-assignment-of-this)
-    - [Determination of `this`'s Context For a Function Invokation](#determination-of-thiss-context-for-a-function-invokation)
+    - [Determination of `this` Context For a Function Invokation](#determination-of-this-context-for-a-function-invokation)
 
 
 ## Introduction
@@ -340,7 +340,7 @@ console.log(targetObject.value); // Outputs 10
 - Notice, the **assignValue (method)** is now changed to a property having a function expression.
 - This change is necessary in-order to use **new**.
 
-### Determination of `this`'s Context For a Function Invokation
+### Determination of `this` Context For a Function Invokation
 
 - Here is the listing in form of precedence, how actually `this` will be determined, for a function.
 
