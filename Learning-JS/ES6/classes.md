@@ -118,4 +118,3 @@ class Demo {
 // Outputs 
 // 10
 ```
-s
