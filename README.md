@@ -31,14 +31,16 @@ This project helps me establish a regular learning routine and ensures I maintai
 ### Navigate
 
 Table Of Contents
-
-- [basics](JS/basics)
-  - [functions](JS/basics/functions.md)
-  - [main-loops](JS/basics/main-loops.md)
-- [advance](JS/advance)
-  - [closures](JS/advance/closures.md)
-  - [hoisting](JS/advance/hoisting.md)
-  - [inheritance](JS/advance/inheritance.md)
-  - [prototypes](JS/advance/prototypes.md)
-  - [scopes](JS/advance/scopes.md)
-  - [this](JS/advance/this.md)
+- [advance](Learning-JS/advance)
+  - [closures.md](Learning-JS/advance/closures.md)
+  - [hoisting.md](Learning-JS/advance/hoisting.md)
+  - [inheritance.md](Learning-JS/advance/inheritance.md)
+  - [prototypes.md](Learning-JS/advance/prototypes.md)
+  - [scopes.md](Learning-JS/advance/scopes.md)
+  - [this.md](Learning-JS/advance/this.md)
+- [basics](Learning-JS/basics)
+  - [functions.md](Learning-JS/basics/functions.md)
+  - [main-loops.md](Learning-JS/basics/main-loops.md)
+- [ES6](Learning-JS/ES6)
+  - [classes.md](Learning-JS/ES6/classes.md)
+  - [promises.md](Learning-JS/ES6/promises.md)
