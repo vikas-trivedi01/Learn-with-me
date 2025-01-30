@@ -7,6 +7,7 @@ Table Of Contents
     - [Buliding Blocks for Promises](#buliding-blocks-for-promises)
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
+      - [**then()** \& **catch()** methods](#then--catch-methods)
 
 
 
@@ -32,8 +33,8 @@ Table Of Contents
 - Above list items are kind of **Buliding Blocks** for `Promises`.
   
 #### Construcing a Promise
-- `Promises` can be created by using **new** and **Promise()**(`Promise` constructor).
-- The `Promise` constructor takes a function called **executor** which takes two method as parameters.
+- `Promises` can be created by using **new Promise()** constructor.
+- The `Promise` constructor takes a function called **executor** which takes two method as parameters : **resolve** and **reject**.
 
 ```Javascript
 const promiseDemo = new Promise((resolve,reject) => {
@@ -64,14 +65,14 @@ promiseDemo.finally(() => console.log("All done"));
 // All done
 ```
 
-- `Promise`'s **Prototype** belongs to, **Promise** Object.
+- `Promise`'s **Prototype** belongs to, **Promise.prototype** Object.
 - `Promise` has a property called **PromiseState**, which indicates current state of a `Promise`.
 - `Promise` has another property called **PromiseResult**, which indicates result / value returned by `Promise`.
 
 
 #### **resolve()** & **reject()** methods
 
-- These methods are part of a mechanism(function) as parameters of that function.
+- These methods are used to fulfill or reject a `Promise`.
 - They are used to indicate fulfillment or rejection state of a `Promise`.
 - When **resolve()** is called and arguments passed to it, forms a promise which is passed to **then()** method.
 - When **reject()** is called and arguments passed to it, forms a promise which is passed to **catch()** method.
@@ -95,13 +96,17 @@ new Promise((resolve, reject) => {
 });
 
 // Outputs
-
 // Fetched Successfully
 
-// if resultStatus = 404 then
+// if resultStatus is 404 then
 
 // Outputs
-
 // Operation Failed
 
 ```
+
+#### **then()** & **catch()** methods
+
+- These methods are associated with **resolve()** and **reject()** outcomes.
+- When a Promise is resolved using **resolve()**, the result is passed as an argument to the **then()** method.
+- Similarly, when a `Promise` is rejected using **reject()**, the error is passed as an argument to the **catch()** method.
