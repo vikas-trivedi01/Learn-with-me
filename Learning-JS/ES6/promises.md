@@ -14,6 +14,38 @@ Table Of Contents
 ## Introduction
 
 - Just like real life, in **JavaScript** `promises` is used to make a <i>promise</i> for an asynchronous task.
+- There are two types of ways we can see a code written using `Promises`.
+  1. Producing Code
+  2. Consuming Code
+
+```Javascript
+let myPromise = new Promise((resolve, reject) => {
+  // tasks to be performed to return results as promise
+}).then(()=> {
+  // tasks depending on result's success of promise
+}).catch(()=> {
+  // tasks depending on result's failure of promise
+})
+```
+
+- Here when **new Promise()** is used forms a `Promise`, having a **executer** function which acts as a messanger between tasks which are promised(asynchronous code) and tasks dependent on results of promised tasks.
+  
+- Tasks performed in executer function are part of **Producing Code**, wich produces results for **Consuming Code**.
+  
+- Result returned as `Promise` from executer function are part of **Consuming Code**, which consumes `Promise` from **Producing Code**.
+  
+- `Promise` object has some properties..
+  1. `[[PromiseState]]`
+
+  - `Promises` have 3 main states :
+  -  **fulfilled** : `Promise` is **resolved** successfully with a value/message.
+  -  **pending** : `Promise` is **pending** and not **resolved** or **rejected**.
+  -  **rejected** : `Promise` is **rejected** with a error or `Promise` is failed to **resolve**.
+  -  One extra state is **settled** : `Promise` is either **fulfilled** or **rejected**.
+  
+  2. `[[PromiseResult]]`
+
+  - Represents result returned by `Promise`.
   
 ### Define Promises
 
@@ -72,6 +104,7 @@ promiseDemo.finally(() => console.log("All done"));
 
 #### **resolve()** & **reject()** methods
 
+- These are callbacks, automatically provided by **JavaScript**.
 - These methods are used to fulfill or reject a `Promise`.
 - They are used to indicate fulfillment or rejection state of a `Promise`.
 - When **resolve()** is called and arguments passed to it, forms a promise which is passed to **then()** method.
