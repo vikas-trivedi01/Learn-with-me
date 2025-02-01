@@ -205,3 +205,31 @@ new Promise((resolve, reject) => {
 - **await** indicates that until the statement prefixed with it, didn't gets executed fully with result,  dont let the program control move ahead.
 - There is a twist, using **async** & **await**, errors can't be handled gracefully.
 - Thus **try - catch block** is used to handle errors also when using **async** & **await**.
+  - Example
+- 
+  ```Javascript
+  const asynchronous = new Promise((resolve, reject) => {
+    let errors = false;
+    if(!errors) {
+      setTimeout(() => {
+        resolve("Usage of async & await");
+      }, 2000);
+    }  
+    else {
+        reject(new Error("Failed to execute !"));
+    }
+  });
+
+  async function consumeAsynchronous() {
+    try {
+      let result = await asynchronous;
+      console.log(result);
+    }
+    catch (error) {
+      console.log(`Error : ${error.message}`);
+    }
+  }
+  consumeAsynchronous();
+  ```
+
+    - Here we used **try - catch block** when using **async** & **await**, handle errors gracefully also from the function <i>consumeAsynchronous</i>.
