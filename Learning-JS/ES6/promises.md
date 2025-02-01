@@ -7,7 +7,7 @@ Table Of Contents
     - [Buliding Blocks for Promises](#buliding-blocks-for-promises)
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
-      - [**then()** \& **catch()** \& **finally()** methods](#then--catch--finally-methods)
+      - [Promise Handlers](#promise-handlers)
 
 
 
@@ -57,10 +57,13 @@ let myPromise = new Promise((resolve, reject) => {
 
 1. Construcing a `Promise`
 2. **resolve()** & **reject()** methods
-3. **then()** & **catch()** methods
-4. **async** & **await** 
-5. Promise Api's **all()** & **allSettled** methods
-6. Promise Chaining
+3. Promise Handlers
+   1. **then()**
+   2. **catch()**
+   3. **finally()**
+   4. **async** & **await** with **try - catch block**
+4. Promise Api's **all()** & **allSettled** methods
+5. Promise Chaining
 
 - Above list items are kind of **Buliding Blocks** for `Promises`.
   
@@ -139,7 +142,11 @@ new Promise((resolve, reject) => {
 
 ```
 
-#### **then()** & **catch()** & **finally()** methods
+#### Promise Handlers
+
+1. **then()** 
+2. **catch()**
+3. **finally()** 
 
 - These methods are associated with **resolve()** and **reject()** outcomes.
 - When a Promise is resolved using **resolve()**, the result is passed as an argument to the **then()** method.
@@ -188,3 +195,13 @@ new Promise((resolve, reject) => {
   - Notice that the **finally** always runs.
 
 
+4. **async** & **await** with **try - catch block**
+
+- This is another way to handle a `Promise`.
+- Often, `Promises` are used to perform some asynchronous tasks.
+- Thus **async** & **await** are highly used to perform those tasks using `Promises`.
+- When a functions has **async** attached with it, function can use **await**.
+- **async** indicates that code block / function is used to perform asynchronous tasks.
+- **await** indicates that until the statement prefixed with it, didn't gets executed fully with result,  dont let the program control move ahead.
+- There is a twist, using **async** & **await**, errors can't be handled gracefully.
+- Thus **try - catch block** is used to handle errors also when using **async** & **await**.
