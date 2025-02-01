@@ -7,7 +7,7 @@ Table Of Contents
     - [Buliding Blocks for Promises](#buliding-blocks-for-promises)
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
-      - [**then()** \& **catch()** methods](#then--catch-methods)
+      - [**then()** \& **catch()** \& **finally()** methods](#then--catch--finally-methods)
 
 
 
@@ -28,7 +28,7 @@ let myPromise = new Promise((resolve, reject) => {
 })
 ```
 
-- Here when **new Promise()** is used forms a `Promise`, having a **executer** function which acts as a messanger between tasks which are promised(asynchronous code) and tasks dependent on results of promised tasks.
+- Here when **new Promise()** is used tp form a `Promise`, having a **executer** function which acts as a messanger between tasks which are promised(asynchronous code) and tasks dependent on results of promised tasks.
   
 - Tasks performed in executer function are part of **Producing Code**, wich produces results for **Consuming Code**.
   
@@ -58,7 +58,7 @@ let myPromise = new Promise((resolve, reject) => {
 1. Construcing a `Promise`
 2. **resolve()** & **reject()** methods
 3. **then()** & **catch()** methods
-4. `Promise`'s states
+4. **async** & **await** 
 5. Promise Api's **all()** & **allSettled** methods
 6. Promise Chaining
 
@@ -66,8 +66,9 @@ let myPromise = new Promise((resolve, reject) => {
   
 #### Construcing a Promise
 - `Promises` can be created by using **new Promise()** constructor.
-- The `Promise` constructor takes a function called **executor** which takes two method as parameters : **resolve** and **reject**.
-
+- The `Promise` constructor takes a function called **executor** which takes two method as parameters which are provided by JavaScript and are callbacks
+- **resolve** and **reject**.
+ 
 ```Javascript
 const promiseDemo = new Promise((resolve,reject) => {
   let hasErrors = false;
@@ -138,8 +139,52 @@ new Promise((resolve, reject) => {
 
 ```
 
-#### **then()** & **catch()** methods
+#### **then()** & **catch()** & **finally()** methods
 
 - These methods are associated with **resolve()** and **reject()** outcomes.
 - When a Promise is resolved using **resolve()**, the result is passed as an argument to the **then()** method.
 - Similarly, when a `Promise` is rejected using **reject()**, the error is passed as an argument to the **catch()** method.
+  
+   ---
+- **finally()**
+  - It is different from other two methods.
+  - It executes everytime doesn't matter whether a `Promise` **resolved** or **rejected**.
+  - It is used for finalizing common, clean up tasks.
+  - It tell whether the `Promise` is done executing or not.
+  - It doesn't return any values except, an **Error** occured, in that case it passes that error to the   closet error handler.
+  - It passes the values received from the promise to next handler, rather than accepting them.
+  - Meaning it doesn't accepts any arguments.
+- Example
+
+```Javascript 
+  new Promise((resolve, reject) => {
+    let value = Math.floor(Math.random()*10);
+    if(value > 18) {
+      resolve("You are eligible to vote");
+    }
+    else {
+      reject(new Error("You must be greater than 18 to vote"));
+    }
+  })
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(`Error : ${error.message}`);
+  })
+  .finally(() => {
+    console.log("Have a good day !");
+  })
+  ```
+
+- Outputs
+  - If code generates value like 10, output will be
+    - You must be greater than 18 to vote
+    - Have a good day !
+  - If code generates value like 51, output will be
+    - You are eligible to vote
+    - Have a good day !
+  
+  - Notice that the **finally** always runs.
+
+
