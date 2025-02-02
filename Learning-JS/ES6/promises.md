@@ -8,6 +8,7 @@ Table Of Contents
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
       - [Promise Handlers](#promise-handlers)
+    - [Use Cases Of `Promises`](#use-cases-of-promises)
 
 
 
@@ -62,7 +63,10 @@ let myPromise = new Promise((resolve, reject) => {
    2. **catch()**
    3. **finally()**
    4. **async** & **await** with **try - catch block**
-4. Promise Api's **all()** & **allSettled** methods
+4. Promise Api methods
+   1. **all()**
+   2. **allSettled**
+   3. **race()**
 5. Promise Chaining
 
 - Above list items are kind of **Buliding Blocks** for `Promises`.
@@ -233,3 +237,11 @@ new Promise((resolve, reject) => {
   ```
 
     - Here we used **try - catch block** when using **async** & **await**, handle errors gracefully also from the function <i>consumeAsynchronous</i>.
+
+### Use Cases Of `Promises`
+
+- `Promises` are highly used in performing asynchronous tasks.
+- Like fetching user details from database.
+- Network calls.
+- API calls.
+- Delayed execution of code.
