@@ -8,6 +8,7 @@ Table Of Contents
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
       - [Promise Handlers](#promise-handlers)
+      - [Promise Cmbinators](#promise-cmbinators)
     - [Use Cases Of `Promises`](#use-cases-of-promises)
 
 
@@ -63,7 +64,7 @@ let myPromise = new Promise((resolve, reject) => {
    2. **catch()**
    3. **finally()**
    4. **async** & **await** with **try - catch block**
-4. Promise Api methods
+4. Promise Combinators 
    1. **all()**
    2. **allSettled**
    3. **race()**
@@ -73,7 +74,7 @@ let myPromise = new Promise((resolve, reject) => {
   
 #### Construcing a Promise
 - `Promises` can be created by using **new Promise()** constructor.
-- The `Promise` constructor takes a function called **executor** which takes two method as parameters which are provided by JavaScript and are callbacks
+- The `Promise` constructor takes a function called **executor** which takes two method as parameters which are provided by JavaScript and are callbacks :
 - **resolve** and **reject**.
  
 ```Javascript
@@ -237,6 +238,111 @@ new Promise((resolve, reject) => {
   ```
 
     - Here we used **try - catch block** when using **async** & **await**, handle errors gracefully also from the function <i>consumeAsynchronous</i>.
+
+#### Promise Cmbinators 
+
+   1. **all()**
+   2. **allSettled()**
+   3. **race()**
+
+1. **all()**
+  - It is a static method of class `Promise` which waits till all the `Promises` are resolved.
+  - It takes array of `Promises` as argument.
+  - If any `Promise` is rejected entire `Promise.all()` rejeects with that error immediately.
+
+```Javascript
+const p1 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 1 second");
+  },1000);
+});
+
+const p2 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 2 seconds");
+  },2000);
+});
+
+const p3 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 3 seconds");
+  },3000);
+});
+
+Promise.all([p1, p2, p3])
+.then( msg => console.log(msg))
+.catch( error => console.log(error))
+
+// Outputs
+// 0: "Resolved after 1 second"
+// 1: "Resolved after 2 seconds"
+// 2: "Resolved after 3 seconds"
+```
+
+2. **allSettled()**
+  - It is a static method of class `Promise` which waits till all the `Promises` are settled(either resolve or rejected).
+  - It takes array of `Promises` as argument.
+  - Returns each `Promise`'s status(which is state) and reason(if rejected) or value(if fulfilled).
+  - It never throws error, thus no catch callback required.
+  
+```Javascript
+const p1 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 1 second");
+  },1000);
+});
+
+const p2 = new Promise(resolve => {
+  setTimeout(() => {
+    reject(new Error("Rejected after 2 seconds"));
+  },2000);
+});
+
+const p3 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 3 seconds");
+  },3000);
+});
+
+Promise.allSettled([p1, p2, p3])
+.then( msg =>  console.log(msg))
+.catch(error => console.log(error));
+
+// Outputs
+// 0: {status: 'fulfilled', value: 'Resolved after 1 second'}
+// 1: {status: 'rejected', reason: Error: Rejected after 2 seconds at <anonymous>:9:12}
+// 2: {status: 'fulfilled', value: 'Resolved after 3 seconds'}
+```
+
+3. **race()**
+  - It is a static method of class `Promise` which returns output of that `Promise` which is completed first, out of given array of `Promises`.
+  - It takes array of `Promises` as argument.
+
+```Javascript
+const p1 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 1 second");
+  },1000);
+});
+
+const p2 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 2 seconds");
+  },2000);
+});
+
+const p3 = new Promise(resolve => {
+  setTimeout(() => {
+    resolve("Resolved after 3 seconds");
+  },3000);
+});
+
+Promise.race([p1, p2, p3]).
+then( msg => console.log(msg));
+
+// Outputs
+// "Resolved after 1 second"
+```
 
 ### Use Cases Of `Promises`
 
