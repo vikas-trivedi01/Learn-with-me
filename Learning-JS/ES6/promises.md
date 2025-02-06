@@ -8,7 +8,8 @@ Table Of Contents
       - [Construcing a Promise](#construcing-a-promise)
       - [**resolve()** \& **reject()** methods](#resolve--reject-methods)
       - [Promise Handlers](#promise-handlers)
-      - [Promise Cmbinators](#promise-cmbinators)
+      - [Promise Combinators](#promise-combinators)
+      - [Promise Chaining](#promise-chaining)
     - [Use Cases Of `Promises`](#use-cases-of-promises)
 
 
@@ -170,7 +171,7 @@ new Promise((resolve, reject) => {
 
 ```Javascript 
   new Promise((resolve, reject) => {
-    let value = Math.floor(Math.random()*10);
+    let value = Math.floor(Math.random()*100);
     if(value > 18) {
       resolve("You are eligible to vote");
     }
@@ -200,7 +201,7 @@ new Promise((resolve, reject) => {
   - Notice that the **finally** always runs.
 
 
-4. **async** & **await** with **try - catch block**
+1. **async** & **await** with **try - catch block**
 
 - This is another way to handle a `Promise`.
 - Often, `Promises` are used to perform some asynchronous tasks.
@@ -239,7 +240,7 @@ new Promise((resolve, reject) => {
 
     - Here we used **try - catch block** when using **async** & **await**, handle errors gracefully also from the function <i>consumeAsynchronous</i>.
 
-#### Promise Cmbinators 
+#### Promise Combinators 
 
    1. **all()**
    2. **allSettled()**
@@ -343,6 +344,44 @@ then( msg => console.log(msg));
 // Outputs
 // "Resolved after 1 second"
 ```
+
+#### Promise Chaining
+
+- When there is a need to perform more than one asynchronous tasks back to back, each subsequent operations executes after previous's execution and using it's result.
+- This is solution for **callback hell**.
+
+```Javascript
+    new Promise((resolve, reject) => {
+    let value = Math.floor(Math.random()*100);
+    console.log(`Age is ${value}`);
+    if(value > 18) {
+      resolve("You are eligible to vote");
+    }
+    else {
+      reject(new Error("You must be greater than 18 to vote"));
+    }
+  })
+  .then((result) => {
+    return `Message : ${result}`;
+  })
+  .then((previousResult) => {
+    return `System responded with result =  ${previousResult}!\n`;
+  })
+  .then((previousResult) => {
+    console.log(`${previousResult} - You can leave this place now.\n - Have a goood day`);
+  })
+  .catch((error) => {
+    console.log(`Error : ${error.message}`);
+  })
+
+```
+- Outputs
+   1. Age is 19
+      System responded with result =  Message : You are eligible to vote!
+      - You can leave this place now.
+      - Have a goood day
+   2. Age is 2
+     Error : You must be greater than 18 to vote
 
 ### Use Cases Of `Promises`
 
