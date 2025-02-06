@@ -383,6 +383,14 @@ then( msg => console.log(msg));
    2. Age is 2
      Error : You must be greater than 18 to vote
 
+- Explanation
+  - If the age will be greater than 18.
+    - Here the first **.then()** will receive **You are eligible to vote** and it will return **Message : You are eligible to vote**.
+    - The second **.then()** will receive **Message : You are eligible to vote** and it will return **System responded with result = Message : You are eligible to vote!**.
+    - The third **.then()** will receive **System responded with result = Message : You are eligible to vote!** and it will print to console **System responded with result = Message : You are eligible to vote!  - You can leave this place now.\n - Have a goood day**.
+
+  - If the age will be less than 18 then the catch block will be executed.
+  
 ### Use Cases Of `Promises`
 
 - `Promises` are highly used in performing asynchronous tasks.
