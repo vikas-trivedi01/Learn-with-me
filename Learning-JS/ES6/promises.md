@@ -107,9 +107,11 @@ promiseDemo.finally(() => console.log("All done"));
 // All done
 ```
 
-- `Promise`'s **Prototype** belongs to, **Promise.prototype** Object.
+- All `Promises` inherit from `Promise.prototype`, which provides methods like **then(), catch(), and finally()**.
 - `Promise` has a property called **PromiseState**, which indicates current state of a `Promise`.
 - `Promise` has another property called **PromiseResult**, which indicates result / value returned by `Promise`.
+- **PromiseState** and **PromiseResult** are internal properties, not accessible directly in JavaScript.
+- They can't be accessed like : **promise**.**PromiseState**.
 
 
 #### **resolve()** & **reject()** methods
@@ -167,6 +169,8 @@ new Promise((resolve, reject) => {
   - It doesn't return any values except, an **Error** occured, in that case it passes that error to the   closet error handler.
   - It passes the values received from the promise to next handler, rather than accepting them.
   - Meaning it doesn't accepts any arguments.
+  - It doesn't modify return value.
+  
 - Example
 
 ```Javascript 
@@ -209,9 +213,10 @@ new Promise((resolve, reject) => {
 - When a functions has **async** attached with it, function can use **await**.
 - **async** indicates that code block / function is used to perform asynchronous tasks.
 - **await** indicates that until the statement prefixed with it, didn't gets executed fully with result,  dont let the program control move ahead.
-- There is a twist, using **async** & **await**, errors can't be handled gracefully.
+- There is a twist, using **async** & **await**, errors can't be handled gracefully, if **try - catch block** is not used.
 - Thus **try - catch block** is used to handle errors also when using **async** & **await**.
-  - Example
+  
+- Example
 - 
   ```Javascript
   const asynchronous = new Promise((resolve, reject) => {
@@ -316,9 +321,10 @@ Promise.allSettled([p1, p2, p3])
 ```
 
 3. **race()**
-  - It is a static method of class `Promise` which returns output of that `Promise` which is completed first, out of given array of `Promises`.
+  - It is a static method of class `Promise` which returns output of that `Promise` which is settled first, out of given array of `Promises`.
   - It takes array of `Promises` as argument.
-
+  - It returns the first settled promise, whether fulfilled or rejected.
+ 
 ```Javascript
 const p1 = new Promise(resolve => {
   setTimeout(() => {
