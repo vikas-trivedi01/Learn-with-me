@@ -11,6 +11,7 @@ Table Of Contents
       - [Promise Combinators](#promise-combinators)
       - [Promise Chaining](#promise-chaining)
     - [Use Cases Of `Promises`](#use-cases-of-promises)
+    - [Real world example](#real-world-example)
 
 
 
@@ -116,12 +117,12 @@ promiseDemo.finally(() => console.log("All done"));
 
 #### **resolve()** & **reject()** methods
 
-- These are callbacks, automatically provided by **JavaScript**.
-- These methods are used to fulfill or reject a `Promise`.
-- They are used to indicate fulfillment or rejection state of a `Promise`.
-- When **resolve()** is called and arguments passed to it, forms a promise which is passed to **then()** method.
-- When **reject()** is called and arguments passed to it, forms a promise which is passed to **catch()** method.
-  
+  - These are callbacks, automatically provided by **JavaScript**.
+  - These methods are used to fulfill or reject a `Promise`.
+  - They are used to indicate fulfillment or rejection state of a `Promise`.
+  - When **resolve()** is called and arguments passed to it, forms a promise which is passed to **then()** method.
+  - When **reject()** is called and arguments passed to it, forms a promise which is passed to **catch()** method.
+    
 ```Javascript
 new Promise((resolve, reject) => {
   let resultStatus = 200;
@@ -207,15 +208,15 @@ new Promise((resolve, reject) => {
 
 1. **async** & **await** with **try - catch block**
 
-- This is another way to handle a `Promise`.
-- Often, `Promises` are used to perform some asynchronous tasks.
-- Thus **async** & **await** are highly used to perform those tasks using `Promises`.
-- When a functions has **async** attached with it, function can use **await**.
-- **async** indicates that code block / function is used to perform asynchronous tasks.
-- **await** indicates that until the statement prefixed with it, didn't gets executed fully with result,  dont let the program control move ahead.
-- There is a twist, using **async** & **await**, errors can't be handled gracefully, if **try - catch block** is not used.
-- Thus **try - catch block** is used to handle errors also when using **async** & **await**.
-  
+   - This is another way to handle a `Promise`.
+   - Often, `Promises` are used to perform some asynchronous tasks.
+   - Thus **async** & **await** are highly used to perform those tasks using `Promises`.
+   - When a functions has **async** attached with it, function can use **await**.
+   - **async** indicates that code block / function is used to perform asynchronous tasks.
+   - **await** indicates that until the statement prefixed with it, didn't gets executed fully with result,  dont let the program control move ahead.
+   - There is a twist, using **async** & **await**, errors can't be handled gracefully, if **try - catch block** is not used.
+   - Thus **try - catch block** is used to handle errors also when using **async** & **await**.
+     
 - Example
 - 
   ```Javascript
@@ -397,6 +398,11 @@ then( msg => console.log(msg));
 
   - If the age will be less than 18 then the catch block will be executed.
   
+
+- Thenables
+  - Notice there is **return** at every **.then()**, at that point implicitly everytime a new `Promise` created and **resolved** with the value returned by that **.then()**.
+  - Actually its not perfect `Promise` object, its an arbitrary object called **thenable** object, which has method **then()** providing functionalities as `Promise`.
+
 ### Use Cases Of `Promises`
 
 - `Promises` are highly used in performing asynchronous tasks.
@@ -404,3 +410,44 @@ then( msg => console.log(msg));
 - Network calls.
 - API calls.
 - Delayed execution of code.
+
+### Real world example
+
+```Javascript
+  fetch("user.json")
+    .then(response => response.json())
+    .then(userData => {
+        if (!userData.name) {
+            throw new Error("User name not found in JSON");
+        }
+        return fetch(`https://api.github.com/users/${userData.name}`);
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`GitHub API error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(githubUser => {
+        return new Promise((resolve, reject) => {
+            let img = document.createElement("img");
+            img.src = githubUser.avatar_url;
+            document.body.append(img);
+
+            setTimeout(() => {
+                try {
+                    img.remove();
+                    resolve("Image removed successfully");
+                } catch (err) {
+                    reject(new Error(err));
+                }
+            }, 2000);
+        });
+    })
+    .then(result => console.log(result))
+    .catch(error => console.error("Error:", error.message));
+```
+
+  - This code will get the user from the file <i>user.json</i>
+  - After that from the user name extracted and fetch the user's image from <i>github api</i>
+  - Append the dom and after 2 seconds remove the image.
