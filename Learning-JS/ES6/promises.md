@@ -439,7 +439,7 @@ then( msg => console.log(msg));
 ```Javascript
 new Promise( /**/ )
 .then()
-.catch(err => console.log(err))
+.catch(err => console.log(err));
 ```
 - Here if the `Promise` encounters an error or **then()** throws an error, as closest error handler is only one , that catch handler should handle the error.
 
@@ -450,10 +450,29 @@ new Promise( (_, reject) => reject(new Error("error happend")))
 .then()
 .catch(err => throw err)
 .then() (*)
-.catch(err2 => console.log(err2))
+.catch(err2 => console.log(err2));
 ```
 
 - Note that here if the error will be generated, it will be first passed to first **catch()**, it doesn't know how to handle it so it will pass it to next error handler thus the line with **(*)** will never be executed when error will be passed to second **catch()**.
+
+- What if no error handlers are provided like below.
+
+```Javascript
+new Promise( (_, reject) => reject(new Error("error happend")));
+```
+
+- In this case `Promise` will be in rejected and in **rejected** state.
+- To handle this kind of situation where we have not handled and error.
+- We have unhandledrejection event, which is triggered when there are errors which forms global errors and are unhandled.
+
+```Javascript
+window.addEventListener("unhandledrejection", function(event) {
+  console.log(`failure occured in promise ${event.promise} `);
+  console.log(`failure reason ${event.reason} `);
+});
+```
+
+- Notice **event.promise & event.reason** are wriiten, which are special properties that **event** object has for the `Promise` which is generated the error and the reason for it.
 
 ### Use Cases Of `Promises`
 
