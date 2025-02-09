@@ -10,6 +10,7 @@ Table Of Contents
       - [Promise Handlers](#promise-handlers)
       - [Promise Combinators](#promise-combinators)
       - [Promise Chaining](#promise-chaining)
+      - [Error Handling Insights](#error-handling-insights)
     - [Use Cases Of `Promises`](#use-cases-of-promises)
     - [Real world example](#real-world-example)
 
@@ -66,11 +67,12 @@ let myPromise = new Promise((resolve, reject) => {
    2. **catch()**
    3. **finally()**
    4. **async** & **await** with **try - catch block**
-4. Promise Combinators 
+4. Error Handling
+5. Promise Combinators 
    1. **all()**
    2. **allSettled**
    3. **race()**
-5. Promise Chaining
+6. Promise Chaining
 
 - Above list items are kind of **Buliding Blocks** for `Promises`.
   
@@ -253,7 +255,7 @@ new Promise((resolve, reject) => {
    3. **race()**
 
 1. **all()**
-  - It is a static method of class `Promise` which waits till all the `Promises` are resolved.
+  - It is a static method of class `Promise`  which return a new `Promise`, which resolves when given iterable(usually array of `Promises`)'s all the `Promises` are resolved.
   - It takes array of `Promises` as argument.
   - If any `Promise` is rejected entire `Promise.all()` rejeects with that error immediately.
 
@@ -286,7 +288,33 @@ Promise.all([p1, p2, p3])
 // 2: "Resolved after 3 seconds"
 ```
 
-2. **allSettled()**
+- Another example is lets say we have a platform where users are logging in simultaneously and we gathered their names to get their profiles from the server and then after fetching their details we display it, this can be done by **.all()** because here we need paralled processing, all users are fetched at same time.
+  
+```Javascript
+let userProfilesRequested = ["ivey", "takeo", "roland"];
+
+let requests = userProfilesRequested.map(user => fetch(`https://api.github.com/users/${user}`));
+
+Promise.all(requests)
+  .then(responses => {
+    responses.forEach(response => {
+      console.log(`${response.url} & ${response.status}`);
+    });
+
+    return Promise.all(responses.map(response => response.json()));
+  })
+  .then(users => {
+    users.forEach(user => {
+      console.log(`${user.login} has starred ${user.starred_url}`);
+    });
+  })
+  .catch(error => console.error("Error fetching user data:", error));
+
+```
+- Output
+![Promise.all example output](/img/promise-all.png)
+
+1. **allSettled()**
   - It is a static method of class `Promise` which waits till all the `Promises` are settled(either resolve or rejected).
   - It takes array of `Promises` as argument.
   - Returns each `Promise`'s status(which is state) and reason(if rejected) or value(if fulfilled).
@@ -402,6 +430,30 @@ then( msg => console.log(msg));
 - Thenables
   - Notice there is **return** at every **.then()**, at that point implicitly everytime a new `Promise` created and **resolved** with the value returned by that **.then()**.
   - Actually its not perfect `Promise` object, its an arbitrary object called **thenable** object, which has method **then()** providing functionalities as `Promise`.
+
+#### Error Handling Insights
+
+- While using `Promises`, there may be sometimes that the asynchronous operation fails, to handle it as discussed earlier **catch()** is used.
+- The **catch()** method catches errors as well as abnormal declarations/callings of functions, variables etc.
+- Example of simple **catch()**
+```Javascript
+new Promise( /**/ )
+.then()
+.catch(err => console.log(err))
+```
+- Here if the `Promise` encounters an error or **then()** throws an error, as closest error handler is only one , that catch handler should handle the error.
+
+- What if the, that error handler doesn't know how to handle that error, in this case next closest handler will be passed with error to handle this error.
+
+```Javascript
+new Promise( (_, reject) => reject(new Error("error happend")))
+.then()
+.catch(err => throw err)
+.then() (*)
+.catch(err2 => console.log(err2))
+```
+
+- Note that here if the error will be generated, it will be first passed to first **catch()**, it doesn't know how to handle it so it will pass it to next error handler thus the line with **(*)** will never be executed when error will be passed to second **catch()**.
 
 ### Use Cases Of `Promises`
 
