@@ -43,6 +43,7 @@ console.log(id.description);
 - Notice that the variable is named as **id**, which is allowed because every newly created `Symbol` is created no matter if the description is identical.
 
 ### Difference between `String` & `Symbol`
+- Primarily `String` & `Symbol` are used as object's keys.
 - If two strings are created which both have same content than they refer to same refernce location.
 ```Javascript
 let s1 = "string";
@@ -63,4 +64,23 @@ console.log( sym1 == sym2);
 
 // Outputs 
 // false
+```
+- Main difference is if we use string in an object and object belongs to another code-base and there is a chance that there may be a error or confilicts.
+- But using `Symbols` there is guarantee that there will be no conflicts, because `Symbols` are hidden while enumerating an object.
+- Even if there is no other code-base and we different scripts and other script defines another user id, then there will be no error just because every `Symbol` is unique.
+  
+```Javascript
+let id = Symbol("userId");
+let user = {
+    name : "xyz",
+    [id] : 2
+}
+
+console.log(user);
+
+// Outputs
+// { 
+//  name: 'xyz',
+//  [Symbol(userId)]: 2
+// }
 ```
