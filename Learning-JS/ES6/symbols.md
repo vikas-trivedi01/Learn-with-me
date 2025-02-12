@@ -5,6 +5,8 @@ Table Of Contents
   - [Introduction](#introduction)
     - [Defining Symbol](#defining-symbol)
     - [Difference between `String` \& `Symbol`](#difference-between-string--symbol)
+    - [Global `Symbols` Registry](#global-symbols-registry)
+    - [**for()** \& **keyFor()** methods](#for--keyfor-methods)
 
 
 ## Introduction
@@ -84,3 +86,52 @@ console.log(user);
 //  [Symbol(userId)]: 2
 // }
 ```
+
+### Global `Symbols` Registry
+
+- There is a **Global `Symbols` Registry**, which holds `Symbols` which are shared everywhere.
+- Otherwise `Symbols` are unique but when its necessary that if a `Symbol` is declared then it should be accessed rather than creating a new one.
+---
+- This work of creating and retrieving **Global `Symbols`** is done by a method **for()**.
+- This method does that, if a **Global `Symbol`** is already created it returns that `Symbol`, otherwise it creates a new one.
+```Javascript
+let globalS1 = Symbol.for("global");
+let localS1 = Symbol("local");
+
+let globalS2 = Symbol.for("global");
+let localS2 = Symbol("local");
+
+console.log("Are both global symbols the same? -> " + (globalS1 == globalS2 ? "YES" : "NO"));
+console.log("Are both local symbols the same? -> " + (localS1 == localS2 ? "YES" : "NO"));
+
+// Outputs
+// Are both global symbols the same? -> YES
+// Are both local symbols the same? → NO
+```
+
+### **for()** & **keyFor()** methods
+
+- As discussed earlier **for()** will do work of creating and retrieving **Global `Symbols`**.
+- **keyFor()** method will return name of the `Symbol` from the given `Symbol`.
+```Javascript
+let globalS1 = Symbol.for("global");
+
+console.log(Symbol.for("global") ) ;
+// Outputs 
+// Symbol(global)
+
+console.log(Symbol.keyFor(globalS1)) ;
+// Outputs 
+// global
+```
+
+  - Verifying that the symbol returned by **Symbol.for("global")** 
+  - is the same as the symbol stored in globalS1, confirming that 
+  - **for()** always returns the same symbol for a given key.
+```Javascript
+console.log(Symbol.for("global") == globalS1);
+// Outputs 
+// true
+```
+
+
