@@ -8,6 +8,8 @@ Table Of Contents
     - [Global `Symbols` Registry](#global-symbols-registry)
     - [**for()** \& **keyFor()** methods](#for--keyfor-methods)
     - [`Symbols` As Hidden Properties](#symbols-as-hidden-properties)
+      - [Hidden Properties](#hidden-properties)
+      - [Acessing Hidden Properties](#acessing-hidden-properties)
 
 
 ## Introduction
@@ -143,23 +145,73 @@ console.log(Symbol.for("global") == globalS1);
   1. Object.assign()
   2. Object.getOwnPropertySymbols()
 
+#### Hidden Properties
 1. for...in loop
-```Javascript
-let obj = {
-  name : "xyz",
-  email : "xyz@user.com",
-  [symbol("PASSWORD")] : "123"
-}
+  ```Javascript
+  let obj = {
+    name : "xyz",
+    email : "xyz@user.com",
+    [Symbol("PASSWORD")] : "123"
+  }
 
-for ( userDetail in obj) {
-  console.log(`User's ${userDetail} is ${obj[userDetail]}`);
-}
+  for ( userDetail in obj) {
+    console.log(`User's ${userDetail} is ${obj[userDetail]}`);
+  }
 
-// Outputs
-// User's name is xyz
-// User's email is xyz@user.com
-```
+  // Outputs
+  // User's name is xyz
+  // User's email is xyz@user.com
+  ```
 
-- Here the password will never be shown in loop.
+  - Here the password will never be shown in loop.
+  
+2. Object.keys()
+  ```Javascript
+  let obj = {
+    name : "xyz",
+    email : "xyz@user.com",
+    [Symbol("PASSWORD")] : "123"
+  }
+  
+  console.log(`Properties of object are : ${Object.keys(obj)}`);
+
+  // Outputs
+  // Properties of object are : name,email
+  ```
+
+  - Here the password will never be shown in object's keys.
+  
+3. Object.getOwnPropertyNames()
+  ```Javascript
+  let obj = {
+    name : "xyz",
+    email : "xyz@user.com",
+    [Symbol("PASSWORD")] : "123"
+  }
+  
+  console.log(`Properties of object are : ${Object.getOwnPropertyNames(obj)}`);
+
+  // Outputs
+  // Properties of object are : name,email
+  ```
+
+#### Acessing Hidden Properties
+  - **Object.assign() & Object.getOwnPropertySymbols()**
+     -  It looks weird that how this method can acess hidden `Symbols` which are properties.
+     -  There is no magic reason is that whenever an object is getting cloned every property must be cloned thus ...
+    
+      ``` Javascript
+      let obj = {
+      name : "xyz",
+      email : "xyz@user.com",
+      [Symbol("PASSWORD")] : "123"
+      }
+
+      let symbolAwareObj = Object.assign( {}, obj );
+      console.log(Object.getOwnPropertySymbols(symbolAwareObj));
+
+      // Outputs
+      // [Symbol(PASSWORD)]
+      ```
 
 
