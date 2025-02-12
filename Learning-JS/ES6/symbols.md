@@ -7,6 +7,7 @@ Table Of Contents
     - [Difference between `String` \& `Symbol`](#difference-between-string--symbol)
     - [Global `Symbols` Registry](#global-symbols-registry)
     - [**for()** \& **keyFor()** methods](#for--keyfor-methods)
+    - [`Symbols` As Hidden Properties](#symbols-as-hidden-properties)
 
 
 ## Introduction
@@ -128,10 +129,37 @@ console.log(Symbol.keyFor(globalS1)) ;
   - Verifying that the symbol returned by **Symbol.for("global")** 
   - is the same as the symbol stored in globalS1, confirming that 
   - **for()** always returns the same symbol for a given key.
+  
 ```Javascript
 console.log(Symbol.for("global") == globalS1);
 // Outputs 
 // true
 ```
+
+### `Symbols` As Hidden Properties
+
+- `Symbols` are hidden in **for...in** loop, **Object.keys()**, **Object.getOwnPropertyNames()**, etc..
+- There are some ways to get the hidden `Symbols`.
+  1. Object.assign()
+  2. Object.getOwnPropertySymbols()
+
+1. for...in loop
+```Javascript
+let obj = {
+  name : "xyz",
+  email : "xyz@user.com",
+  [symbol("PASSWORD")] : "123"
+}
+
+for ( userDetail in obj) {
+  console.log(`User's ${userDetail} is ${obj[userDetail]}`);
+}
+
+// Outputs
+// User's name is xyz
+// User's email is xyz@user.com
+```
+
+- Here the password will never be shown in loop.
 
 
