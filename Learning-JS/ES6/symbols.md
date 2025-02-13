@@ -10,6 +10,7 @@ Table Of Contents
     - [`Symbols` As Hidden Properties](#symbols-as-hidden-properties)
       - [Hidden Properties](#hidden-properties)
       - [Acessing Hidden Properties](#acessing-hidden-properties)
+    - [Real World Example](#real-world-example)
 
 
 ## Introduction
@@ -214,4 +215,34 @@ console.log(Symbol.for("global") == globalS1);
       // [Symbol(PASSWORD)]
       ```
 
+### Real World Example
 
+```Javascript
+const SESSION_TOKEN = Symbol("sessiontoken");
+
+class User {
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+        this[SESSION_TOKEN] = this.generateToken();
+    }
+
+    generateToken() {
+        return Math.random().toString(20).slice(2);
+    }
+
+    getSessionToken() {
+        return this[SESSION_TOKEN]; 
+    }
+}
+
+const user = new User("xyz", "xyz@user.com");
+
+console.log("User name is " + user.name);
+console.log("User email is " + user.email);
+
+// console.log(user.SESSION_TOKEN); undefined
+console.log("Session token is " + user.getSessionToken());
+
+console.log("Object keys " + Object.keys(user));
+```
