@@ -245,4 +245,10 @@ console.log("User email is " + user.email);
 console.log("Session token is " + user.getSessionToken());
 
 console.log("Object keys " + Object.keys(user));
+
+// Outputs
+// User name is xyz
+// User email is xyz@user.com
+// Session token is dd2975d09ahbe
+// Object keys name,email
 ```
