@@ -7,6 +7,10 @@ Table Of Contents
   - [Passing Values To Generator Functions](#passing-values-to-generator-functions)
   - [Infinite Loop Counter Using Generator Functions](#infinite-loop-counter-using-generator-functions)
   - [Generator Delegation](#generator-delegation)
+  - [Return in Generator Functions](#return-in-generator-functions)
+  - [Using With APIs](#using-with-apis)
+  - [Reading File](#reading-file)
+  - [Real World Example](#real-world-example)
 
 
 ## Introduction
@@ -28,18 +32,22 @@ Table Of Contents
 
     console.log(`First Generator yield executed : ${JSON.stringify(generate.next())}`);
     console.log(`Second Generator yield executed : ${JSON.stringify(generate.next())}`);
+    console.log(`All yield statements are executed :  ${JSON.stringify(generate.next())}`);
 
     // Outputs
 
     // First Generator yield executed : {"value" : "Generator" , "done" : false}
 
-    // Second Generator yield executed : {"value" : " Function" , "done" : false}
+    // Second Generator yield executed : {"value" : "Function" , "done" : false}
+
+    // All yield statements are executed : {"value" : "undefined" , "done" : true}
 ```
 
 - Here the **yield** statements are executed when **next()** is used.
 - It returns an object having two properties.
   1. **value** 
      - Indicates what the **yield** statement has returned.
+     - When all **yield** are over it's value will be **undefined**.
   2. **done** 
      - Returns <i>false</i>, if there are still remaining statements in a  `Generator Function`,
      - Otherwise returns <i>true</i> when the `Generator Function` is finished, meaning all **yield** statements are over. 
@@ -132,3 +140,123 @@ console.log(delegate.next().value);
 // Delegated
 // Done delegation
 ```
+
+### Return in Generator Functions
+
+- When **return** statement is encountered control directly jumps to calling point of function.
+- Thus the statements after **return** statement are ignored.
+
+```Javascript
+function* returnExample() {
+  yield "Statement one";
+  return "Statement two(return executed)" ;
+  yield "Statement three";
+}
+
+const getReturn = returnExample();
+
+console.log(getReturn.next().value);
+console.log(getReturn.next().value);
+console.log(getReturn.next().value);
+
+// Outputs
+
+// Statement one
+// Statement two(return executed)
+// undefined
+```
+
+- Here <i>Statement three</i> will never be executed.
+
+### Using With APIs
+
+- `Generator Functions` can be used with <i>APIs</i> to perform step wise tasks.
+
+```Javascript
+async function* getPages(url) {
+  
+  let page = 1;
+
+  while(true) {
+  const response = await fetch(`${url}?page=${page}`);
+  const data = await response.json();
+
+  if(data.length === 0) {
+    break;
+  }
+
+  yield data;
+  page++;
+
+}
+
+(async () => {
+  const pages = getPages("https://api.example.com");
+
+  for await (let page of pages) {
+    console.log(page);
+  }
+})();
+```
+
+### Reading File
+
+```Javascript
+async function* readFile(file) {
+  const reader = file.stream().getReader();
+
+  while(true) {
+    const {done, value} = await reader.read();
+
+    if(done) break;
+    yield value;
+  }
+
+}
+```
+
+### Real World Example
+
+```Javascript
+let date = new Date();
+
+let hours = date.getHours();
+let minutes = date.getMinutes();
+
+let newformat = hours >= 12 ? "PM" : "AM";
+
+hours = hours % 12;
+
+hours = hours ? hours : 12;
+minutes = minutes < 10 ? "0" + minutes : minutes;
+
+function* chat(c) {
+    yield c;
+}
+document.getElementById("b1").addEventListener("click", () => {
+
+    let c = chat(
+          `<div class='container'><p>Person One</p><p id='sender-msg'>${document.getElementById("p1").value
+          }<br><span class='t'>
+            ${hours + ":" + minutes + " " + newformat}
+            </span></p></div>`
+    );
+    document.getElementById("chat-msg").innerHTML += c.next().value;
+    document.getElementById("p1").value = "";
+});
+
+document.getElementById("b2").addEventListener("click", () => {
+
+    let c = chat(
+          `<div class='container'><p style=' margin-left: 700px;'>Person Two</p><p id='receiver-msg'>${document.getElementById("p2").value
+          }<br><span class='t'>
+            ${hours + ":" + minutes + " " + newformat}
+            </span></p></div>`
+    );
+
+    document.getElementById("chat-msg").innerHTML += c.next().value;
+    document.getElementById("p2").value = "";
+});
+
+```
+
