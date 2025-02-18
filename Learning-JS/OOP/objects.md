@@ -7,6 +7,14 @@ Table Of Contents
       - [Object Literals](#object-literals)
       - [Object Constructor](#object-constructor)
       - [Object Prototype](#object-prototype)
+    - [Operations of Object](#operations-of-object)
+      - [Adding \& Modifying Properties](#adding--modifying-properties)
+      - [Deleting Properties](#deleting-properties)
+      - [Getters \& Setters](#getters--setters)
+    - [Object Methods](#object-methods)
+      - [Object.keys()](#objectkeys)
+      - [Object.values()](#objectvalues)
+      - [Object.entries()](#objectentries)
 
 
 ## Introduction
@@ -73,3 +81,113 @@ Table Of Contents
   // Name is xyz
   // Age is 34
   ```
+
+### Operations of Object
+
+  #### Adding & Modifying Properties
+  ```Javascript
+  const user = {
+    age : 33,
+  }
+  user.name = "xyz";
+  user.age = 34;
+
+  console.log(user);
+
+  // Ouputs
+  // {name: 'xyz', age: 34}
+  ```
+
+  - Here the age property will be modified and name property will be added.
+  
+  #### Deleting Properties
+  ```Javascript
+  const user = {
+    name : "xyz",
+    age : 34,
+  }
+  console.log(user);
+
+  // Ouputs
+  // {name: 'xyz', age: 34}
+
+  delete user.age;
+  console.log(user);
+
+  // Ouputs
+  // {name: 'xyz'}
+  ```
+
+  - Here the age property will be modified and name property will be added.
+  
+  #### Getters & Setters
+  - **Getters & Setters** are used to get the value of a existing property of an `Object` and set the value of a property of an `Object`.
+  ```Javascript
+  const user = {
+    set userName(name) {
+      this.name = name; 
+    },
+    get userName() {
+      return this.name;
+    }
+  }
+
+  user.userName = "xyz";
+  console.log("Name is " + user.userName);
+  
+  // Ouputs
+  // Name is xyz
+  ```
+
+### Object Methods
+
+  #### Object.keys()
+  - Returns arrays of all keys of an `Object`.
+  ```Javascript
+  const obj = {
+    demoString : "demo",
+    num : 134,
+    anotherNum : 43,
+  }
+
+  console.log("All keys are")
+  console.log(Object.keys(obj));
+  // Ouputs
+  // ['demoString', 'num', 'anotherNum']
+  ```
+
+  #### Object.values()
+  - Returns arrays of all keys' values of an `Object`.
+  ```Javascript
+  const obj = {
+    demoString : "demo",
+    num : 134,
+    anotherNum : 43,
+  }
+
+  console.log("All values are")
+  console.log(Object.values(obj));
+  // Ouputs
+  //  ['demo', 134, 43]
+  ```
+
+  #### Object.entries()
+  - Returns array of arrays having keys and values of an `Object`. 
+  ```Javascript
+  const obj = {
+    demoString : "demo",
+    num : 134,
+    anotherNum : 43,
+  }
+
+  console.log("All entries are")
+  console.log(Object.entries(obj));
+  
+  // Ouputs
+  // [
+  //    ['demoString', 'demo']
+  //    ['num', 134]
+  //    ['anotherNum', 43]
+  // ]
+  ```
+
