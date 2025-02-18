@@ -1,16 +1,17 @@
-Z# Generators
+# Generators
 
 Table Of Contents
-- [Introduction](#introduction)
-  - [Defining Generator Function](#defining-generator-function)
-  - [Generator Functions with Loops](#generator-functions-with-loops)
-  - [Passing Values To Generator Functions](#passing-values-to-generator-functions)
-  - [Infinite Loop Counter Using Generator Functions](#infinite-loop-counter-using-generator-functions)
-  - [Generator Delegation](#generator-delegation)
-  - [Return in Generator Functions](#return-in-generator-functions)
-  - [Using With APIs](#using-with-apis)
-  - [Reading File](#reading-file)
-  - [Real World Example](#real-world-example)
+- [Generators](#generators)
+  - [Introduction](#introduction)
+    - [Defining Generator Function](#defining-generator-function)
+    - [Generator Functions with Loops](#generator-functions-with-loops)
+    - [Passing Values To Generator Functions](#passing-values-to-generator-functions)
+    - [Infinite Loop Counter Using Generator Functions](#infinite-loop-counter-using-generator-functions)
+    - [Generator Delegation](#generator-delegation)
+    - [Return in Generator Functions](#return-in-generator-functions)
+    - [Using With APIs](#using-with-apis)
+    - [Reading File](#reading-file)
+    - [Real World Example](#real-world-example)
 
 
 ## Introduction
