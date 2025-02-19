@@ -15,6 +15,9 @@ Table Of Contents
       - [Object.keys()](#objectkeys)
       - [Object.values()](#objectvalues)
       - [Object.entries()](#objectentries)
+    - [Using with APIs](#using-with-apis)
+    - [Prototypes](#prototypes)
+    - [Using **Object.entries()** for optimized iterations](#using-objectentries-for-optimized-iterations)
 
 
 ## Introduction
@@ -191,3 +194,50 @@ Table Of Contents
   // ]
   ```
 
+### Using with APIs
+
+- When getting repsponse from an API the data will be in **JSON** thus it should be converted in `Objects` to perform further operations.
+```Javascript
+async function fetchData() {
+  const response = await fetch("api.example.com");
+  const data = await response.json();
+  console.log(data.name);
+}
+```
+
+### Prototypes
+
+- `Objects` can acts as a base class through which other `Objects` can inherit.
+```Javascript 
+const proto = {
+  getName() {
+    return this.name;
+  },
+}
+
+const obj = Object.create(proto);
+obj.name = "xyz";
+console.log(obj.name);
+
+// Outputs
+// xyz
+```
+
+### Using **Object.entries()** for optimized iterations
+
+```Javascript
+const obj = {
+  isLogged : false,
+  userId : 123
+}
+
+Object.entries(obj).forEach(([userProp, userDetail] ) => {
+  console.log(userProp, userDetail);
+});
+
+// Outputs
+// isLogged false
+// userld 123
+```
+
+- It provides faster retrievals of values and faster lookups.
