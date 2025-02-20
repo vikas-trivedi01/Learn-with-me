@@ -18,6 +18,10 @@ Table Of Contents
     - [Using with APIs](#using-with-apis)
     - [Prototypes](#prototypes)
     - [Using **Object.entries()** for optimized iterations](#using-objectentries-for-optimized-iterations)
+    - [Storing and Retrieving Objects in Local Storage](#storing-and-retrieving-objects-in-local-storage)
+    - [Destructuring Objects](#destructuring-objects)
+    - [Immutable Objects](#immutable-objects)
+    - [Objects with Spread Syntax ...](#objects-with-spread-syntax-)
 
 
 ## Introduction
@@ -241,3 +245,115 @@ Object.entries(obj).forEach(([userProp, userDetail] ) => {
 ```
 
 - It provides faster retrievals of values and faster lookups.
+
+### Storing and Retrieving Objects in Local Storage
+
+```Javascript
+const userPreferences = {
+  theme : "dark",
+  notfications : "enabled",
+  region : "north",
+}
+
+localStorage.setItem("userPreferences", JSON.stringify(userPreferences));
+
+const fetchUserPreferences = JSON.parse(localStorage.getItem("userPreferences"));
+
+console.log(fetchUserPreferences);
+
+// Outputs
+// {theme: 'dark', notfications: 'enabled', region: 'north'}
+```
+
+### Destructuring Objects
+
+```Javascript
+const largeObject = {
+
+  "productId": 45678,
+  "category": "Electronics",
+  "price": 299.99,
+  "inStock": true,
+  "rating": 4.5,
+  "dimensions": {
+    "width": 15.2,
+    "height": 7.5,
+    "depth": 1.3
+  },
+  "releaseDate": "2024-10-15",
+  "features": ["Bluetooth", "Waterproof", "Wireless Charging"]
+
+}
+
+const { price, features } = largeObject;
+
+console.log(`Price of product is : ${price}`);
+console.log("Features of product are :");
+features.forEach((feature, featureNumber) => {
+    console.log(`Feature number ${featureNumber + 1} is ${feature}`);
+});
+
+// Outputs
+
+// Price of product is : 299.99
+
+// Features of product are : 
+
+// Feature number 1 is Bluetooth
+// Feature number 2 is Waterproof
+// Feature number 3 is Wireless Charging
+```
+
+### Immutable Objects
+
+- Using the `Object.freeze()` method, particular `Object` will be unmodifiable, thus improving security and immutablility.
+  
+```Javascript
+const secret = {secretKey : "kefuehfuhuxhf"};
+secret.secretKey = "abc";
+console.log(secret);
+
+// Outputs
+// {secretKey: 'abc'}
+
+const secret = {secretKey : "kefuehfuhuxhf"};
+Object.freeze(secret);
+
+secret.secretKey = "abc";
+console.log(secret);
+
+// Outputs
+// {secretKey: 'kefuehfuhuxhf'}
+```
+
+### Objects with Spread Syntax ...
+
+```Javascript
+const generalProductInfo = {
+  "productId": 45678,
+  "category": "Electronics",
+  "price": 299.99,
+  "inStock": true,
+}
+
+const productInfoInsights = {
+  "rating": 4.5,
+  "releaseDate": "2024-10-15",
+  "features": ["Bluetooth", "Waterproof", "Wireless Charging"]
+}
+
+const product = {...generalProductInfo, ... productInfoInsights};
+console.log(product);
+
+// Outputs
+// {
+//   "productId": 45678,
+//   category: "Electronics"
+//   features: ['Bluetooth', 'Waterproof', 'Wireless Charging']
+//   inStock: true
+//   price: 299.99
+//   productId: 45678
+//   rating: 4.5
+//   releaseDate: "2024-10-15"
+// }
+```
