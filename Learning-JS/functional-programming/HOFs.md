@@ -11,6 +11,7 @@ Table Of Contents
       - [reduce()](#reduce)
       - [sort()](#sort)
     - [Creating Own map() Implementation](#creating-own-map-implementation)
+    - [Composition Of Functions](#composition-of-functions)
 
 
 ## Introduction
@@ -160,3 +161,38 @@ async function fetchUsersData(url) {
 ```
 - Outputs<br><br>
   ![map-example](../img/hof.png)
+
+### Composition Of Functions
+
+- When series of functions are required to perform we can batch them all at once.
+- Thus input is processed step-by-step.
+
+- Suppose user has entered a password and we want to add more things to the password then we can add those things one at a time.
+  
+```Javascript
+    const userName = "test user";
+    const comment = "This is composition";
+    const time = "12 Pm";
+
+    function userComments(comment) {
+        return `${comment}...`;
+    }
+
+    function addTimestamp(action) {
+        console.table(
+            [
+                {
+                    user_name : `${userName}`,
+                    has_commented : `${action}`,
+                    timestamp : `at ${time}`
+                }
+            ]
+         );
+    }
+
+
+    addTimestamp(userComments(comment));
+```
+
+- Outputs<br><br>
+  ![composition example](../img/composition.png)
