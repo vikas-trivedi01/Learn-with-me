@@ -5,6 +5,7 @@ Table Of Contents
   - [Introduction](#introduction)
     - [Function with Functions as arguments](#function-with-functions-as-arguments)
     - [Function with Returning a Function](#function-with-returning-a-function)
+    - [Built-in Higher-order functions](#built-in-higher-order-functions)
 
 
 ## Introduction
@@ -52,3 +53,58 @@ async function fetchUsersData(url) {
     console.log(`User profile:`, getUserProfileById(2)); 
 })();
 ```
+
+### Built-in Higher-order functions
+
+- Some built-in functions are :
+  1. map()
+  2. filter()
+  3. reduce()
+  4. sort()
+
+- These are highly used higher-order functions for arrays.
+- For manipulating, transforming, creating arrays.
+  
+1. map()
+   - **map()** transforms current array into a new array where each array element is manipulated.
+   ```Javascript
+        const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        const fourthTable = nums.map(num => 4 * num);
+
+        for (let i=0;i<fourthTable.length;i++)
+            console.log(`4 * ${i+1} = ${fourthTable[i]}`);
+   ```
+
+2. filter()
+   - **filter()** filters current array into a new array where each array element is - which passes the checks(conditions) or in easy language returns true.
+   ```Javascript
+        const nums = [1, 2, 3, 4, 5];
+        const evens = nums.filter(num => num % 2 == 0);
+
+        for (let i=0;i<evens.length;i++)
+            console.log(`${evens[i]} is even`);
+   ```
+
+3. reduce()
+   - **reduce()** accumulates current array into single value / reduced value, used for get the sum of array elements, average etc.
+   - **reduce()** takes a 
+     1. callback in which first argument is accumulator
+     2. accumulator's initial value is second argument
+   
+   ```Javascript
+        const nums = [1, 2, 3, 4, 5];
+        const sum = nums.reduce((acc, num) => acc + num, 0);
+
+        console.log(`Sum of 1 to 5 numbers is ${sum}`);
+   ```
+
+4. sort()
+   - **sort()** sorts given array, by default it performs **lexicographical sorting** meaning numbers are treated as strings.
+   - If ascending order sorting is required following program should be used.
+   ```Javascript
+        const nums = [100, 22, 323, 64, 45];
+        const sortedNums = nums.sort((a, b) => a - b );
+
+        for (let i=0;i<sortedNums.length;i++)
+            console.log(sortedNums[i]);
+   ```
