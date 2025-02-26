@@ -6,6 +6,11 @@ Table Of Contents
     - [Function with Functions as arguments](#function-with-functions-as-arguments)
     - [Function with Returning a Function](#function-with-returning-a-function)
     - [Built-in Higher-order functions](#built-in-higher-order-functions)
+      - [map()](#map)
+      - [filter()](#filter)
+      - [reduce()](#reduce)
+      - [sort()](#sort)
+    - [Creating Own map() Implementation](#creating-own-map-implementation)
 
 
 ## Introduction
@@ -57,10 +62,10 @@ async function fetchUsersData(url) {
 ### Built-in Higher-order functions
 
 - Some built-in functions are :
-  1. map()
-  2. filter()
-  3. reduce()
-  4. sort()
+  #### map()
+  #### filter()
+  #### reduce()
+  #### sort()
 
 - These are highly used higher-order functions for arrays.
 - For manipulating, transforming, creating arrays.
@@ -108,3 +113,50 @@ async function fetchUsersData(url) {
         for (let i=0;i<sortedNums.length;i++)
             console.log(sortedNums[i]);
    ```
+
+### Creating Own map() Implementation
+
+- Refer to below link for understanding how **map()** works. 
+- [map()](#map)
+- Here we will create our own **map()** specially for circles' methods.
+
+```Javascript
+    
+    function area(radius) {
+        return Math.PI * radius * radius;
+    }
+    function circumference(radius) {
+        return 2 * Math.PI * radius;
+    }
+    function diameter(radius) {
+        return 2 * radius;
+    }
+
+    const nums = [5, 4, 9, 3, 7];
+
+    Array.prototype.circleUtils = function (logic) {
+        const output = [];
+
+        for (let i = 0; i < this.length; i++) {
+            output.push(parseFloat(logic(this[i]).toFixed(4)));
+        }
+
+        return output;
+    }
+
+
+    console.log("Areas");
+    console.log(nums.circleUtils(area));
+    console.log("-------------------------------");
+
+    console.log("Circumferences")
+    console.log(nums.circleUtils(circumference));
+    console.log("-------------------------------");
+
+    console.log("Diameters");
+    console.log(nums.circleUtils(diameter));
+    console.log("-------------------------------");
+
+```
+- Outputs<br><br>
+  ![map-example](../img/hof.png)
