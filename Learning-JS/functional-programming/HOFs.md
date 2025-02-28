@@ -12,6 +12,8 @@ Table Of Contents
       - [sort()](#sort)
     - [Creating Own map() Implementation](#creating-own-map-implementation)
     - [Composition Of Functions](#composition-of-functions)
+    - [Currying Functions](#currying-functions)
+    - [Debouncing](#debouncing)
 
 
 ## Introduction
@@ -196,3 +198,28 @@ async function fetchUsersData(url) {
 
 - Outputs<br><br>
   ![composition example](../img/composition.png)
+
+### Currying Functions
+
+- **Currying** transforms a function which takes many arguments into small-small functions where each function takes one argument at a time processing arguments step-by-step.
+```Javascript
+    // Normal function
+    // function multiply(a, b) {
+    //     return a * b;
+    // }
+
+    // Curried function
+    const multiply = a => b => a * b;
+
+    const double = multiply(2);
+    console.log(double(5)); 
+
+    // Outputs
+    // 10
+```
+
+### Debouncing 
+
+- When we want to batch all the actions and sent them all as a single action then that process is known as **debouncing**.
+- Example<br>
+  [debouncing example](debouncing.html)
