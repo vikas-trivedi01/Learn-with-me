@@ -8,7 +8,14 @@ Table Of Contents
       - [length](#length)
       - [at()](#at)
       - [concat()](#concat)
+      - [copyWithin()](#copywithin)
       - [entries()](#entries)
+      - [fill()](#fill)
+      - [flat()](#flat)
+      - [flatMap()](#flatmap)
+      - [includes()](#includes)
+      - [indexOf() \&\& lastIndexOf()](#indexof--lastindexof)
+      - [join()](#join)
 
 
 ## Introduction
@@ -63,6 +70,21 @@ Table Of Contents
     // 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
   ```
 
+   #### copyWithin()
+   - **copyWithin()** is a method, which modifies original array to copy given range of elements in the same array, maintaining the original length of array (i.e overwrites).
+     - arguments :
+       1. target - where to start putting copied elements.
+       2. start - where to start copying from.
+       3. end -  where to end copying of elements.
+  
+  ```Javascript
+    const arr = ["one", "two", "three", "four", "five"];
+    console.log(arr.copyWithin(1,2,3));
+
+    // Outputs
+    // ['one', 'three', 'three', 'four', 'five']
+  ```
+
    #### entries()
    - **entries()** is a method which returns an iterator object consist of given array's key-value pairs having index and element.
   
@@ -81,4 +103,81 @@ Table Of Contents
     // Element four is at index 3
     // Element five is at index 4
   ```
+
+   #### fill()
+   - **fill()** fills given **value** from **start** to **end** in original array.
+     - arguments :
+       1. value - value to fill array with.
+       2. start - where to start filling from.
+       3. end -  where to end filling of elements.
+  
+  ```Javascript
+    const arr = [1, 2, 3, 4, 5];
+    console.log(arr.fill(0, 2, 5));
+
+    // Outputs
+    // 1, 2, 0, 0, 0
+  ```
+
+   #### flat()
+   - **flat()** returns a new array sub-array elements of array are flatten(concated) to a specified depth.
+  
+  ```Javascript
+    const arr = [1, [2, 3], [[4, 5]], [[[6]]]];
+    const flatten = arr.flat(2);
+    console.log(flatten);
+    
+    // Outputs
+    // 1, 2, 3, 4, 5, [6]
+  ```
+
+   #### flatMap()
+   - **flatMap()** maps each array element with a function and flats array till one level and returns a new array.
+  
+  ```Javascript
+    const arr = [1, 2, 3];
+    const flatten = arr.flatMap(num => [num, num * 2]);
+    console.log(flatten);
+
+    // Outputs
+    // 1, 2, 2, 4, 3, 6
+  ```
+
+   #### includes()
+   - **includes()** either returns true if element is found in array or false otherwise.
+  
+  ```Javascript
+    const arr = [1, 2, 3];
+    console.log(arr.includes(5));
+
+    // Outputs
+    // false
+  ```
+
+   #### indexOf() && lastIndexOf()
+   - **indexOf()** returns index of first occurence of the given element.
+   - **lastIndexOf()** returns index of last occurence of the given element.
+  
+  ```Javascript
+    const arr =  ["one", "two", "three", "four", "three"];
+    console.log(arr.indexOf("three"));
+    console.log(arr.lastIndexOf("three"));
+
+    // Outputs
+    // 2
+    // 4
+  ```
+
+  #### join()
+  - **join** converts an array into string with joining elements of array with given separator.
+  - 
+  ```Javascript
+    const arr =  ["This", "is", "joined", "with", "hyphens"];
+    console.log(arr.join("-"));
+
+    // Outputs
+    // This-is-joined-with-hyphens
+  ```
+
+
 
