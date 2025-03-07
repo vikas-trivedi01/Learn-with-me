@@ -16,6 +16,12 @@ Table Of Contents
       - [includes()](#includes)
       - [indexOf() \&\& lastIndexOf()](#indexof--lastindexof)
       - [join()](#join)
+      - [keys()](#keys)
+      - [reverse()](#reverse)
+      - [slice()](#slice)
+      - [sort()](#sort)
+      - [toString()](#tostring)
+      - [values()](#values)
 
 
 ## Introduction
@@ -170,7 +176,7 @@ Table Of Contents
 
   #### join()
   - **join** converts an array into string with joining elements of array with given separator.
-  - 
+
   ```Javascript
     const arr =  ["This", "is", "joined", "with", "hyphens"];
     console.log(arr.join("-"));
@@ -179,5 +185,86 @@ Table Of Contents
     // This-is-joined-with-hyphens
   ```
 
+  #### keys()
+  - **keys** returns an iterator having keys(indices) of given array.
+  
+  ```Javascript
+    const arr =  ["This", "is", "joined", "with", "hyphens"];
+    const iterator = arr.keys();
+    
+    for (let idx of iterator)
+        console.log(idx);
 
+    // Outputs
+    // 0
+    // 1
+    // 2
+    // 3
+    // 4 
+  ```
 
+  #### reverse()
+  - **reverse** reverses an array elements in place.
+
+  ```Javascript
+    const arr =  ["This", "is", "joined", "with", "hyphens"];
+    arr.reverse();
+    console.log(arr);
+
+    // Outputs
+    // ['hyphens', 'with', 'joined', 'is', 'This']
+  ```
+  
+  #### slice()
+  - **slice** slices an array's elements and returns new array with sliced elements.
+
+  ```Javascript
+    const arr =  ["This", "is", "joined", "with", "hyphens"];
+    console.log(arr.slice(1,3));
+
+    // Outputs
+    // [is', 'joined']
+  ```
+
+  #### sort()
+  - **sort** sorts an array's elements in place, but by default it sorts alphabetcally if numbered is required there must be a comparison function passed as argument.
+
+  ```Javascript
+    const arr =  [43,59,35,6,443];
+    arr.sort( (a,b) => a - b );
+
+    console.log(arr);
+
+    // Outputs
+    // [6, 35, 43, 59, 443]
+  ```
+  
+  #### toString()
+  - **toString** converts an array to a string separated by commas.
+
+  ```Javascript
+    const arr = ["apple", "banana", "cherry"];
+    console.log(arr.toString());
+
+    // Outputs
+    // "apple,banana,cherry"
+  ```
+
+  #### values()
+  - **values** returns an iterator having values(elements) of given array.
+  
+  ```Javascript
+    const arr =  ["This", "is", "joined", "with", "hyphens"];
+    const iterator = arr.values();
+    
+    for (let val of iterator)
+        console.log(val);
+
+    // Outputs
+    // This
+    // is
+    // joined
+    // with
+    // hyphens
+  ```
+  
