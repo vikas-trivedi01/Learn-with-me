@@ -3,7 +3,7 @@
 Table Of Contents
 - [Array Methods](#array-methods)
   - [Introduction](#introduction)
-    - [Concepts to Learn](#concepts-to-learn)
+  - [Concepts to Learn](#concepts-to-learn)
     - [Basic Methods](#basic-methods)
       - [length](#length)
       - [at()](#at)
@@ -22,13 +22,19 @@ Table Of Contents
       - [sort()](#sort)
       - [toString()](#tostring)
       - [values()](#values)
+    - [Adding/Removing Elements](#addingremoving-elements)
+      - [push()](#push)
+      - [pop()](#pop)
+      - [unshift()](#unshift)
+      - [shift()](#shift)
+      - [splice()](#splice)
 
 
 ## Introduction
 
 - Array is powerful concept in **JavaScript** to form ordered collection of data under a single name.
 
-### Concepts to Learn
+## Concepts to Learn
 
 ![array methods](../img/array-methods.png)
 
@@ -268,3 +274,72 @@ Table Of Contents
     // hyphens
   ```
   
+### Adding/Removing Elements
+
+  #### push()
+  - **push** adds one or more elements at end in original array returning length of new array.
+  
+  ```Javascript
+    const arr =  [1, 2, 3, 4];
+    console.log(`New length is ${arr.push(5)}`);
+    console.log(`Updated array is ${arr}`);
+
+    // Outputs
+    // New length is 5
+    // Updated array is 1, 2, 3, 4, 5
+  ```
+
+  #### pop()
+  - **pop** removes one or more elements from end in original array returning removed elements.
+  
+  ```Javascript
+    const arr =  [1, 2, 3, 4, 5];
+    console.log(`Removed element is ${arr.pop(5)}`);
+    console.log(`Updated array is ${arr}`);
+
+    // Outputs
+    // Removed element is 5
+    // Updated array is 1, 2, 3, 4
+  ```
+
+  #### unshift()
+  - **unshift** adds one or more elements at begining in original array returning length of new array.
+  
+  ```Javascript
+    const arr =  [2, 3, 4, 5];
+    console.log(`New length is ${arr.unshift(1)}`);
+    console.log(`Updated array is ${arr}`);
+
+    // Outputs
+    // New length is 5
+    // Updated array is 1, 2, 3, 4, 5
+  ```
+  #### shift()
+  - **shift** removes one or more elements from begining in original array returning removed elements.
+  
+  ```Javascript
+    const arr =  [1, 2, 3, 4, 5];
+    console.log(`Removed element is ${arr.shift(1)}`);
+    console.log(`Updated array is ${arr}`);
+
+    // Outputs
+    // Removed element is 1
+    // Updated array is 2, 3, 4, 5
+  ```
+
+  #### splice()
+  - **splice** used to add, remove, replace elements in original array.
+     - arguments :
+       1. start - where to start opeations.
+       2. deleteCount - how many elements to remove.
+       3. items... - elements to add / replace.
+
+  ```Javascript
+    const arr =  ["this", "is", "str"];
+    arr.splice(1, 2, "is", "new", "string");
+    console.log(`Updated array is : ${arr}`);
+
+    // Outputs
+    // Updated array is : this,is,new,string
+  ```
+
