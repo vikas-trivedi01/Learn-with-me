@@ -28,6 +28,12 @@ Table Of Contents
       - [unshift()](#unshift)
       - [shift()](#shift)
       - [splice()](#splice)
+    - [Iteration Methods](#iteration-methods)
+      - [forEach()](#foreach)
+      - [map()](#map)
+      - [filter()](#filter)
+      - [reduce()](#reduce)
+      - [reduceRight()](#reduceright)
 
 
 ## Introduction
@@ -343,3 +349,53 @@ Table Of Contents
     // Updated array is : this,is,new,string
   ```
 
+### Iteration Methods
+
+  #### forEach()
+  - **forEach** is used to execute a function  on all elements in an array.
+
+  ```Javascript
+    const arr =  ["this", "is", "str"];
+    arr.forEach( (elem, idx) => console.log(`${elem} is at position ${idx}`) );
+
+    // Outputs
+    // Element : 'this' is at position 0
+    // Element : 'is' is at position 1
+    // Element : 'str' is at position 2
+  ```
+
+  #### map()
+  - [map() explanation](HOFs.md/#map)
+  
+  #### filter()
+  - [filter() explanation](HOFs.md/#filter)
+  
+  #### reduce()
+  - [reduce() explanation](HOFs.md/#reduce)
+
+  #### reduceRight()
+  - **reduceRight** is same as reversing working of **reduce**.
+  - Meaning this method starts accumulating elements from end to start(i.e. from right to left).
+  - It accepts an optional accumulator value, if not provided it defaults to last element of array.
+  
+  ```Javascript
+      const arr =  [10, 20, 30];
+
+      console.log(`Sum : 
+                        ${
+                        arr.reduceRight( (acc, num) => {
+                                   
+                                      console.log(`${num} is being processed`);
+                                    
+                                      return acc + num;
+                                    
+                                      }, 0);
+                          }
+                `);
+
+    // Outputs
+    // 30 is being processed
+    // 20 is being processed
+    // 10 is being processed
+    // sum : 60
+  ```
