@@ -34,6 +34,13 @@ Table Of Contents
       - [filter()](#filter)
       - [reduce()](#reduce)
       - [reduceRight()](#reduceright)
+      - [some()](#some)
+      - [every()](#every)
+      - [find()](#find)
+      - [find()](#find-1)
+      - [findLast()](#findlast)
+      - [findIndex()](#findindex)
+      - [findLastIndex()](#findlastindex)
 
 
 ## Introduction
@@ -399,3 +406,92 @@ Table Of Contents
     // 10 is being processed
     // sum : 60
   ```
+
+  #### some()
+  - **some** checks if atleast one element in an array that satisfies the given condition.
+  - It returns true / false.
+  
+  ```Javascript
+    const arr =  ["this", "is", "str"];
+
+    console.log(arr.some( str => str.length < 3 ));
+
+    // Outputs
+    // true
+  ```
+
+  #### every()
+  - **every** checks if all elements of array satisfies the given condition.
+  - It returns true / false.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+
+    console.log(arr.every( str => str.length ==  4 ));
+    
+    // Outputs
+    // true
+  ```
+
+  #### find()
+  - **find** checks all elements of array and returns the first element which satisfies the given condition.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+
+    console.log(arr.find( str => str.length ==  4 ));
+
+    // Outputs
+    // this
+  ```
+
+  #### find()
+  - **find** checks all elements of array and returns the first element which satisfies the given condition.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+
+    console.log(arr.find( str => str.length ==  4 ));
+
+    // Outputs
+    // this
+  ```
+
+  #### findLast()
+  - **findLast** checks all elements of array and returns the last element which satisfies the given condition.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+
+    console.log(arr.findLast( str => str.length ==  4 ));
+
+    // Outputs
+    // look
+  ```
+
+  #### findIndex()
+  - **findIndex** checks all elements of array and returns the first element's index which satisfies the given condition.
+  
+  ```Javascript
+    const arr =  ["two", "word", "look"];
+
+    console.log(arr.findIndex( str => str.length ==  4 ));
+
+    // Outputs
+    // 1
+  ```
+  
+  #### findLastIndex()
+  - **findLastIndex** checks all elements of array and returns the last element's index which satisfies the given condition.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+
+    console.log(arr.findLastIndex( str => str.length ==  4 ));
+
+    // Outputs
+    // 2
+  ```
+
+
+  
