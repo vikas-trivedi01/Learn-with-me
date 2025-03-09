@@ -41,6 +41,11 @@ Table Of Contents
       - [findLast()](#findlast)
       - [findIndex()](#findindex)
       - [findLastIndex()](#findlastindex)
+    - [Advance Methods](#advance-methods)
+      - [from()](#from)
+      - [isArray()](#isarray)
+      - [of()](#of)
+      - [with()](#with)
 
 
 ## Introduction
@@ -493,5 +498,56 @@ Table Of Contents
     // 2
   ```
 
+### Advance Methods
+
+  #### from()
+  - **from()** creates new array from an iterable object such as nodeList or string.
+  
+  ```Javascript
+    const str =  "string";
+
+    console.log(Array.from(str));
+
+    // Outputs
+    // ['s', 't', 'r', 'i', 'n', 'g']
+  ```
+
+  #### isArray()
+  - **isArray()** checks if given argument is array or not, returns true / false.
+  
+  ```Javascript
+    console.log(Array.isArray([1, 2, 3])); 
+    console.log(Array.isArray("hello"));
+
+    // Outputs
+    // true
+    // false
+  ```
+  
+  #### of()
+  - **of()** creates new array from given arguments considering those as elements.
+  
+  ```Javascript
+    console.log(Array.of(10, 20, 30));
+
+    // Outputs
+    // [10, 20, 30]
+  ```
+  
+  #### with()
+  - **with()** introduced in **ES2023** copies the array and updates the given element in newly created array with specified index.
+  - without modifying original array.
+  
+  ```Javascript
+    const arr =  ["this", "word", "look"];
+    const newArr = arr.with(1, "updated");
+
+    console.log(`Original array : ${arr}`);
+    console.log(`Array created using 'with' : ${newArr}`);
+
+    // Outputs
+    // Original array : this,word,look
+    // Array created using 'with' : this, updated, look
+  ```
 
   
